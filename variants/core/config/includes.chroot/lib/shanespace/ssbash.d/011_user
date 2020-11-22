@@ -1,0 +1,34 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+is_user_root()
+{
+	[ "$(id -u)" -eq 0 ]
+}
+
+elevate()
+{
+	local bypass_prompt
+	bypass_prompt="$(string_to_boolean "$1")"
+
+	if ! is_user_root
+	then
+		write_debug "Elevated permissions required."
+		
+		if [[ "$bypass_prompt" != "true" ]]
+		then
+			write_debug "Displaying elevation prompt."
+			write "This operation requires elevated permissions, would you like to invoke sudo? Press enter to use default value of \"yes\"."
+			prompt_boolean "Invoke as sudo? [yes]:" || exit $?
+		else
+			write_debug "Elevation prompt bypassed."
+			write "This operation requires elevated permissions, would you like to invoke sudo?"
+		fi
+		
+		write_debug "Restarting script as root..."
+		(sudo -E "$0" "$@") || local sudo_exit_code=$?
+		exit $sudo_exit_code
+	fi
+}

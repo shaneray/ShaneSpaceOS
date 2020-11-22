@@ -1,0 +1,203 @@
+#!/bin/bash
+
+#################################
+# Functions
+#################################
+build_color_type_names()
+{
+	LS_COLOR_TYPE_NAME[no]="global default"
+	LS_COLOR_TYPE_NAME[fi]="normal file"
+	LS_COLOR_TYPE_NAME[di]="directory"
+	LS_COLOR_TYPE_NAME[ln]="symbolic link"
+	LS_COLOR_TYPE_NAME[pi]="named pipe, AKA FIPO"
+	LS_COLOR_TYPE_NAME[so]="socket"
+	LS_COLOR_TYPE_NAME[do]="door"
+	LS_COLOR_TYPE_NAME[bd]="block device"
+	LS_COLOR_TYPE_NAME[cd]="character device"
+	LS_COLOR_TYPE_NAME[or]="orphan symbolic link"
+	LS_COLOR_TYPE_NAME[mi]="missing file"
+	LS_COLOR_TYPE_NAME[su]="set uid"
+	LS_COLOR_TYPE_NAME[sg]="set gid"
+	LS_COLOR_TYPE_NAME[tw]="sticky other writable directory"
+	LS_COLOR_TYPE_NAME[ow]="other writable directory"
+	LS_COLOR_TYPE_NAME[st]="sticky directory"
+	LS_COLOR_TYPE_NAME[ex]="executable"
+	LS_COLOR_TYPE_NAME[mh]="multiple hard links"
+}
+
+ls_color_map()
+{
+	if string_is_notempty "${LS_COLOR_TYPE_MAP[*]}"
+	then
+		write_debug "Using cached color type map."
+		return;
+	fi
+	
+	write_debug "Building color type map"
+	local ls_colors=( $(string_split ':' "$LS_COLORS") )
+	
+	for ls_color in "${ls_colors[@]}"
+	do
+		local color="${ls_color##*=}"
+		local ext="${ls_color%%=*}"
+		
+		# icon
+		local icon="$EMOJI_FILE"
+		local icon_secondary="$EMOJI_BLANK"
+		[[ "$ext" =~ ^di|tw|ow|st$ ]] && icon="$EMOJI_FOLDER"
+		[[ "$ext" =~ ^ln|or|mh$ ]] && icon="$EMOJI_LINK"
+		[[ "$ext" =~ ^or$ ]] && icon_secondary="$EMOJI_WARNING"
+
+		LS_COLOR_TYPE_MAP[$ext]="${icon}${icon_secondary} \E[${color}m"
+	done
+}
+
+ls_color_chart()
+{
+	# ensure the color map is built and available
+	ls_color_map
+	
+	for ext in "${!LS_COLOR_TYPE_MAP[@]}"
+	do
+		output+="${LS_COLOR_TYPE_MAP[$ext]}$ext"
+		# if type has friendly name, display it.
+		[ ${LS_COLOR_TYPE_NAME[$ext]+_} ] && output+=" (${LS_COLOR_TYPE_NAME[$ext]})"
+		output+="$output\E[0m\n"
+	done
+	
+	echo -e "$output"
+}
+
+ls_color()
+{
+	# ensure the color map is built and available
+	ls_color_map
+	
+	local output
+	# if file name not passed, list color chart
+	[ -z "$1" ] &&
+	{
+		ls_color_chart
+		return
+	}
+	
+	#local type_info="$(file_info "$1")"
+	local type_id="no"
+	local type_order="100"
+	local type_hidden="0"
+	
+	# basic type checks
+	[[ "$type_id" == "no" && -k "$1" ]] && { type_id="tw"; }
+	[[ "$type_id" == "no" && -h "$1" && ! -e "$1" ]] && { type_id="or"; }
+	[[ "$type_id" == "no" && -L "$1" ]] && { type_id="ln"; }
+	[[ "$type_id" == "no" && -L "$1" && -d "$1" ]] && { type_id="ln"; }
+	[[ "$type_id" == "no" && -S "$1" ]] && { type_id="so"; }
+	[[ "$type_id" == "no" && -x "$1" ]] && [[ ! -d "$1" ]] && { type_id="ex"; }
+	[[ "$type_id" == "no" && -d "$1" ]] && { type_id="di"; }
+	
+	# if type still unknown, check file extensions
+	write_debug "Unknown file type, falling back to extension."
+	[[ "$type_id" == "no" ]] &&
+	{
+		for ls_type_color_key in "${!LS_COLOR_TYPE_MAP[@]}"
+		do
+			[[ "$1" == $ls_type_color_key ]] && { type_id="$ls_type_color_key"; break; }
+			continue; #avoid errors in debug/trace logs
+		done
+	}
+	
+	# build output
+	type_color="${LS_COLOR_TYPE_MAP[$type_id]:-${EMOJI_FILE}${EMOJI_BLANK} }"
+	local basename="$1"
+	basename="$(basename "$1")"
+	
+	# list directories first
+	[[ $type_id =~ di|tw|ow|st ]] && type_order="000"
+	
+	# list hidden files last and add ghost icon
+	[[ "${basename}" == .* ]] &&
+	{
+		type_order=$((type_order+100));
+		type_hidden="1";
+		type_color="${type_color//${EMOJI_BLANK}/${EMOJI_GHOST}}";
+	}
+	
+	echo -e "${type_order}${type_hidden}|${type_color}${basename}\E[0m|${type_info}"
+}
+
+color()
+{
+	local output=""
+	local fg=255
+	for c; do
+		local length=${#c}
+		local spaces=$(repeat ' ' $((4-$length)))
+		output+="\e[48;5;${c}m"
+		output+="\e[38;5;${fg}m"
+		output+=" ${c}${spaces}"
+		[ $fg -gt 232 ] && let fg--
+	done
+	echo -e "${output}\e[0m"
+}
+
+color_test()
+{
+	line_length=$(($(($(tput cols)-5))/5))
+	
+	#IFS=$' \t\n'
+	echo "Basic Colors"
+	color {0..15}
+	echo
+	
+	echo "Extended Colors"
+	color_start=16
+	color_end=$((color_start+line_length))
+	while [ $color_start -lt 232 ]
+	do
+		color $(seq $((color_start)) $((color_end)))
+		color_start=$((color_end+1))
+		color_end=$((color_start+line_length))
+		[[ $color_end -gt 231 ]] && color_end=231
+	done
+	echo
+	
+	echo "Shades"
+	color {232..255}
+}
+
+#################################
+# Init
+#################################
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+unset color_prompt force_color_prompt
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls -A1 --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# define LS_COLOR array variables
+declare -gAx LS_COLOR_TYPE_MAP
+declare -gAx LS_COLOR_TYPE_NAME
+
+# cache color map
+ls_color_map

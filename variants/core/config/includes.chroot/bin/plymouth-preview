@@ -1,0 +1,34 @@
+#!/bin/bash
+
+## Preview Plymouth Splash ##
+##      by _khAttAm_       ##
+##    www.khattam.info     ##
+##    License: GPL v3      ##
+
+chk_root () {
+  if [ ! $( id -u ) -eq 0 ]; then
+    echo Must be run as root
+    exit
+  fi
+}
+
+chk_root
+
+DURATION=$1
+if [ $# -ne 1 ]; then
+  DURATION=10
+fi
+
+plymouthd --debug
+plymouth --show-splash
+
+START_TIME=$SECONDS
+ELAPSED_TIME=$(($SECONDS - $START_TIME))
+for ((I=1; $ELAPSED_TIME<=$DURATION; I++)); do
+  xrefresh
+  ELAPSED_TIME=$(($SECONDS - $START_TIME))
+  PROGRESS_PERCENT=$(echo "100/$DURATION*$ELAPSED_TIME" | printf "%.0f" $(bc -l))
+  MESSAGE="BootMsg:$I - $PROGRESS_PERCENT% Completed."
+  plymouth update --status="$MESSAGE"
+  done;
+plymouth quit

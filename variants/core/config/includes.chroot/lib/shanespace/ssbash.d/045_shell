@@ -1,0 +1,65 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+get_shell_type()
+{
+	local output=""
+	if tty -s
+		then output+='interactive'
+		else output+='non-interactive'
+	fi
+	
+	if echo "$0" | grep -e "^\\-" 2>&1>/dev/null
+		then output+='login'
+		else output+='non-login'
+	fi
+	
+	echo "$output"
+}
+
+set_options()
+{
+	set -o functrace
+	set -o errtrace
+	set -o pipefail
+	#set -o nounset
+	#set -o errexit
+}
+
+shell_info()
+{
+	write "Shell Loaded [ShaneSpace OS Shell]"
+	write "Base Shell: [${SHELL}]"
+	write "Shell Type: [${SHELL_TYPE}]"
+	write "Shell Options: [${-}]"
+	write "Shell User: [$(id -u) - $USER]"
+	write "Shell PATH: [${PATH}]"
+}
+
+set_ps1()
+{
+	# DEFAULT (user@SHANESPACEO:~/Desktop$): \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+	local creset='\[\e[0m\]'
+	local color="${COLOR_PRIMARY}"
+	local icon="${EMOJI_ALIEN}"
+	local warning=""
+	
+	if is_user_root ;
+	then
+		color="1"; #red
+		icon="${EMOJI_SKULL_AND_BONES}"
+		warning="${EMOJI_WARNING}"
+	fi
+	
+	color="\[\e[38;5;${color}m\]"
+	
+	export PS1="${warning}${color}[${creset}\$(get_time)${color}] [${creset}${icon} \u($SHLVL) \w${color}]${creset}${warning}:"
+}
+
+reset()
+{
+	exec bash
+	clear
+}

@@ -1,0 +1,67 @@
+# Desktop Environment
+task-lxde-desktop
+lxtask
+plymouth
+plymouth-themes
+plymouth-x11
+libgtk-3-dev
+
+# Panel Start Menu
+xfce4-panel
+xfce4-whiskermenu-plugin
+xfce4-indicator-plugin
+xfce4-clipman-plugin
+xfce4-genmon-plugin
+
+# GUI Apps
+xserver-xorg-input-synaptics
+wicd-gtk
+vlc
+dconf-editor
+synaptic
+lxqt-sudo
+lxtask
+qt5ct
+xcape
+xfce4-notifyd
+libnotify-bin
+gtk-3-examples
+fonts-noto-color-emoji
+xdotool
+
+# Utilities
+sudo
+xrdp
+xorgxrdp
+openssh-server
+localepurge
+dosfstools
+software-properties-common
+wget
+curl
+gnupg2
+grub-common
+pciutils
+debconf-utils
+hardinfo
+ntfs-3g
+zip
+unzip
+bc
+dos2unix
+rsync
+locate
+jq
+
+# HyperV integration: http://kb.rkidder.com/index.php?action=artikel&cat=2&id=49&artlang=en
+hyperv-daemons
+
+# network
+ifupdown
+iproute2
+isc-dhcp-client
+netbase
+wireless-tools
+gvfs
+gvfs-backends
+rfkill

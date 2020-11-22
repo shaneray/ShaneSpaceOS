@@ -1,0 +1,6 @@
+#!/bin/bash
+
+alias ls='ss_dir'
+alias dir='ss_dir'
+alias cd='ss_cd'
+alias explorer='pcmanfm'

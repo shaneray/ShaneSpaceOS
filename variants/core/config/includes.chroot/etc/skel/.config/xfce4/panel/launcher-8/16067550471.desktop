@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Action
+ToolbarLabel=Open Folder As Root
+Name=Open Folder As Root
+Profiles=profile-zero;
+Icon=gtk-dialog-authentication
+X-XFCE-Source=file:///home/user/.local/share/file-manager/actions/ss-run-as-root.desktop
+
+[X-Action-Profile profile-zero]
+Exec=lxsudo pcmanfm %f
+Name=Open Folder As Root
+SelectionCount==1
+Name=Default profile

@@ -1,0 +1,7 @@
+[Added Associations]
+text/plain=mousepad.desktop;
+application/octet-stream=mousepad.desktop;
+
+[Default Applications]
+text/plain=mousepad.desktop
+application/octet-stream=mousepad.desktop

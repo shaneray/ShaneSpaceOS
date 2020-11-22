@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+ 
+# Update current working directory to dist directory
+cd ./dist
+
+lb build noauto "${@}" 2>&1 | tee build.log
+
+echo "Builld completed in $SECONDS seconds"
+ 

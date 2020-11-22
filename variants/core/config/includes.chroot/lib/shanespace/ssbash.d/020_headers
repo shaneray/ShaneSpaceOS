@@ -1,0 +1,66 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+
+# Function "header_text": center the text with a surrounding border
+# first argument: text to center
+# second argument: glyph which forms the border
+# third argument: width of the padding
+# https://unix.stackexchange.com/questions/267729/how-can-i-print-a-variable-with-padded-center-alignment
+header_text()
+{
+	DEBUG_NO_TRAP=1
+	local terminal_width=$(($(tput cols)-1))     # query the Terminfo database: number of columns
+	local text="${1:?}"                   # text to center
+	local glyph="${2:-=}"                 # glyph to compose the border
+	local padding="${3:-2}"               # spacing around the text
+	
+	local text_width=${#text}
+	local border_width=$(( (terminal_width - (padding * 2) - text_width) / 2 ))
+	
+	# create the border (left side or right side)
+	local border="$(string_repeat "${glyph}" $border_width)"
+	
+	# space between the text and borders
+	local spacing="$(string_repeat ' ' $padding)"
+	
+	# displays the text in the center of the screen, surrounded by borders.
+	local output="${border}${spacing//-/' '}${text}${spacing}"
+	local remaining_characters=$(($terminal_width-$(string_length "${output}")))
+	right=$(string_repeat "$glyph" $remaining_characters)
+	[[ $remaining_characters -gt 0 ]] && output+="${right}"
+	
+	echo "$output"
+	DEBUG_NO_TRAP=0
+}
+
+h0() {
+	local glyph="█"
+	seperator=$(header_text "$glyph" "$glyph" 0)
+	write "\n$seperator\n$(header_text "$@" "$glyph" 2)\n$seperator"
+}
+
+h1() {
+	local glyph="="
+	seperator=$(header_text "$glyph" "$glyph" 0)
+	write "\n$seperator\n$(header_text "$@" "$glyph" 2)\n$seperator"
+}
+
+h2() {
+	local glyph="~"
+	seperator=$(header_text "$glyph" "$glyph" 0)
+	write "\n$seperator\n$(header_text "$@" "$glyph" 2)\n$seperator"
+}
+
+h3() {
+	local glyph="-"
+	seperator=$(header_text "$glyph" "$glyph" 0)
+	write "\n$seperator\n$(header_text "$@" "$glyph" 2)\n$seperator"
+}
+
+seperator() {
+	write $(header_text "${1:-=}" "${1:-=}" 0)
+}
+

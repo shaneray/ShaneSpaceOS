@@ -1,0 +1,20 @@
+#!/bin/bash
+
+_ssbash ()
+{
+	local cur
+	cur=${COMP_WORDS[COMP_CWORD]}
+	
+	COMPREPLY=()   # Array variable storing the possible completions.
+	[[ $PWD != "$HOME" ]] && return 1;
+	
+	case $cur in
+		/~*)
+			COMPREPLY=( "~/" )
+			return 0
+			;;
+	esac
+  return 1
+}
+
+complete -F _ssbash -o bashdefault -o default -o filenames -o plusdirs cd

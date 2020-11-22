@@ -1,0 +1,24 @@
+label live-@FLAVOUR@
+	menu label ^ShaneSpace OS Live
+	menu default
+	echo "Loading Kernel..."
+	linux @LINUX@
+	echo "Loading Initial RAM Disk"
+	initrd @INITRD@
+	append @APPEND_LIVE@ persistent
+	
+label live-@FLAVOUR@-sandbox
+	menu label ^ShaneSpace OS Live Sandbox
+	echo "Loading Kernel..."
+	linux @LINUX@
+	echo "Loading Initial RAM Disk"
+	initrd @INITRD@
+	append @APPEND_LIVE@
+
+label live-@FLAVOUR@-failsafe
+	menu label ^ShaneSpace OS Live (failsafe)
+	echo "Loading Kernel..."
+	linux @LINUX@
+	echo "Loading Initial RAM Disk"
+	initrd @INITRD@
+	append @APPEND_LIVE_FAILSAFE@

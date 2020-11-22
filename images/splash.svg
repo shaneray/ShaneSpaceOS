@@ -1,0 +1,48 @@
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+
+ <metadata id="metadata3325">image/svg+xml</metadata>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="602" width="802" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="layer1">
+   <rect fill="#000000" y="0" x="0" height="480" width="640" id="rect3328"/>
+   <text font-size="35.65467px" font-style="normal" font-weight="bold" text-anchor="start" fill="#ffffff" font-family="DejaVu Sans" xml:space="preserve" x="190.68135" y="619.20685" id="text3002" transform="translate(0,-572.3621826171875) scale(1.0000015497207642,0.9999985098838806) ">
+    <tspan font-size="19.99997px" font-style="normal" font-weight="bold" id="tspan3045" x="190.68135" y="619.20685">@PROJECT@ @VERSION@ (@DISTRIBUTION@)</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="bold" id="tspan3041" x="190.68135" y="639.20679">@ARCHITECTURE@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="bold" id="tspan3037" x="190.68135" y="659.20679"/>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="bold" id="tspan3039" x="190.68135" y="679.20679">Build: @YEAR@-@MONTH@-@DAY@ @HOUR@:@MINUTE@:@SECOND@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="bold" id="tspan3098" x="190.68135" y="699.20673"/>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="normal" id="tspan3102" x="190.68135" y="719.20667">linux: @LINUX_VERSIONS@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="normal" id="tspan3076" x="190.68135" y="739.20667">live-build: @LIVE_BUILD_VERSION@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="normal" id="tspan3068" x="190.68135" y="759.20667">live-boot: @LIVE_BOOT_VERSION@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="normal" id="tspan3070" x="190.68135" y="779.2066">live-config: @LIVE_CONFIG_VERSION@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="normal" id="tspan3012" x="190.68135" y="799.20654">live-tools: @LIVE_TOOLS_VERSION@</tspan>
+    <tspan font-size="19.99997px" font-style="normal" font-weight="normal" id="tspan3066" x="190.68135" y="819.20654"/>
+   </text>
+   <text font-size="40px" font-style="normal" font-weight="normal" fill="#000000" font-family="Sans" id="text3114" y="336.7742" x="200" xml:space="preserve"/>
+   <g stroke="null" id="svg_22">
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_5">
+     <path stroke="null" fill="#ffffff" id="svg_6" d="m594.83348,720.8784c0,157.434 128.185,375.178 241.4,375.178c106.581,0 241.399,-217.744 241.399,-375.178s-108.078,-236.822 -241.4,-236.822s-241.399,79.388 -241.399,236.822zm304.12,116.415c29.475,-29.475 70.598,-40.195 108.552,-32.173c8.021,37.954 -2.698,79.077 -32.173,108.552c-29.475,29.475 -70.598,40.195 -108.552,32.173c-8.022,-37.955 2.698,-79.078 32.173,-108.552zm-233.994,-32.174c37.954,-8.021 79.077,2.698 108.552,32.173c29.475,29.475 40.195,70.598 32.173,108.552c-37.954,8.021 -79.077,-2.698 -108.552,-32.173c-29.475,-29.476 -40.194,-70.598 -32.173,-108.552z"/>
+    </g>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_7"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_8"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_9"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_10"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_11"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_12"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_13"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_14"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_15"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_16"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_17"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_18"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_19"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_20"/>
+    <g stroke="null" transform="matrix(0.19883863998849033,0,0,0.19883863998849033,-67.77543602373316,-63.16408144786237) " id="svg_21"/>
+   </g>
+  </g>
+ </g>
+</svg>
