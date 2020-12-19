@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+# Install xfce4-panel 4.14
+mkdir -p /tmp2
+cd /tmp2
+wget http://mxrepo.com/mx/repo/pool/main/m/mx19-archive-keyring/mx19-archive-keyring_2019.5.31_all.deb
+sudo apt install ./mx19-archive-keyring_2019.5.31_all.deb
+echo "deb http://mxrepo.com/mx/repo/ buster main non-free" > /etc/apt/sources.list.d/mxrepo.list
+sudo apt update
+sudo apt install xfce4-panel -y
+rm /etc/apt/sources.list.d/mxrepo.list
+rm -rf /tmp2

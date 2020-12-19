@@ -3,4 +3,4 @@
 set -e
 
 adduser --disabled-password --gecos "Live User,,," user
-echo "user:live" | chpasswd
+echo "live:live" | chpasswd

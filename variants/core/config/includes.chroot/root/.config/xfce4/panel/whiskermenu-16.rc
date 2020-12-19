@@ -1,5 +1,5 @@
 favorites=
-recent=synaptic.desktop,google-chrome.desktop,lxappearance.desktop,pcmanfm.desktop,lxterminal.desktop,lxsession-edit.desktop,lxinput.desktop,mousepad.desktop,hardinfo.desktop,wicd.desktop
+recent=obconf.desktop,lxinput.desktop,lxappearance.desktop,google-chrome.desktop,lxtask.desktop,code.desktop,users.desktop,org.kde.kcharselect.desktop,mousepad.desktop,org.gnome.FontManager.desktop
 button-title=
 button-icon=/usr/share/lxde/images/lxde-icon.png
 button-single-row=true
@@ -46,35 +46,17 @@ command-menueditor=exo-preferred-applications
 show-command-menueditor=true
 command-profile=mugshot
 show-command-profile=false
-search-actions=5
+search-actions=2
 
 [action0]
-name=Man Pages
-pattern=#
-command=exo-open --launch TerminalEmulator man %s
-regex=false
-
-[action1]
-name=Web Search
-pattern=(.+)
-command=exo-open --launch WebBrowser https://google.com/?q=\\0
-regex=true
-
-[action2]
-name=Wikipedia
-pattern=!w
-command=exo-open --launch WebBrowser https://en.wikipedia.org/wiki/%u
-regex=false
-
-[action3]
-name=Run in Terminal
-pattern=!
-command=exo-open --launch TerminalEmulator %s
-regex=false
-
-[action4]
 name=Open URI
 pattern=^(file|http|https):\\/\\/(.*)$
 command=exo-open \\0
+regex=true
+
+[action1]
+name=Search
+pattern=(.+)
+command=catfish --hidden --path ~ --start \\0
 regex=true
 

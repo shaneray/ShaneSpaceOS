@@ -1,0 +1,4 @@
+#!/bin/bash
+command='echo ${PS1@P} %command%; %command%';
+command="${command//'%command%'/$*}"
+/etc/alternatives/x-terminal-emulator -e "bash --rcfile <(echo '${command}')"

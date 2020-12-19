@@ -1,3 +1,5 @@
 @xfce4-panel
 @pcmanfm --desktop --profile LXDE
 @xscreensaver -no-splash
+@xcomp
+@xcape -e 'Super_L=Control_L|Escape'

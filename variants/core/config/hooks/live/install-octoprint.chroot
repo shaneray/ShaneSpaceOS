@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+# create octoprint user
+adduser --disabled-password --gecos "OctoPrint,,," octoprint
+echo "octoprint:ender3" | chpasswd
+sudo usermod -a -G tty octoprint
+sudo usermod -a -G dialout octoprint
+
+# install octoPrint software
+cd /lib
+sudo mkdir OctoPrint && cd octoPrint
+sudo python3 -m venv venv
+. venv/bin/activate
+pip install pip --upgrade
+pip install --no-cache-dir octoprint
+
+# create octoPrint service
+sudo mv /lib/OctoPrint/octoprint.service /etc/systemd/system/octoprint.service
+systemctl enable octoprint.service
