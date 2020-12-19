@@ -116,11 +116,7 @@ cd /lib
 sudo mkdir OctoPrint && cd OctoPrint
 echo "creating virtual environment.."
 sudo python3 -m venv venv
-echo "directory listing for $PWD"
-ls
-echo "directory listing for ${PWD}/venv/bin"
-ls ${PWD}/venv/bin
-source venv/bin/activate
+. venv/bin/activate
 pip install pip --upgrade
 pip install --no-cache-dir octoprint
 sudo usermod -a -G tty user
