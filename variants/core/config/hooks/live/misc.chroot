@@ -114,7 +114,12 @@ sudo apt install -y ./teamviewer-host_amd64.deb
 
 cd /lib
 sudo mkdir OctoPrint && cd OctoPrint
-python3 -m venv venv
+echo "creating virtual environment.."
+sudo python3 -m venv venv
+echo "directory listing for $PWD"
+ls
+echo "directory listing for ${PWD}/venv/bin"
+ls ${PWD}/venv/bin
 source venv/bin/activate
 pip install pip --upgrade
 pip install --no-cache-dir octoprint
