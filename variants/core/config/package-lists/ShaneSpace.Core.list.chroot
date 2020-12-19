@@ -52,6 +52,13 @@ dos2unix
 rsync
 locate
 jq
+python3-pip
+python3-dev
+python3-setuptools
+python3-venv
+git
+libyaml-dev
+build-essential
 
 # HyperV integration: http://kb.rkidder.com/index.php?action=artikel&cat=2&id=49&artlang=en
 hyperv-daemons
