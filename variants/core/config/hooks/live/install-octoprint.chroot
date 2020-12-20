@@ -15,7 +15,7 @@ sudo python3 -m venv venv
 . venv/bin/activate
 pip install pip --upgrade
 pip install --no-cache-dir octoprint
-
+deactivate
 # create octoPrint service
 sudo mv /lib/OctoPrint/octoprint.service /etc/systemd/system/octoprint.service
 systemctl enable octoprint.service
