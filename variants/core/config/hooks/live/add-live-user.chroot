@@ -2,5 +2,5 @@
 
 set -e
 
-adduser --disabled-password --gecos "Live User,,," user
+adduser --disabled-password --gecos "Live User,,," live
 echo "live:live" | chpasswd

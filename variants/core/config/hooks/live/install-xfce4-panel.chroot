@@ -11,4 +11,5 @@ echo "deb http://mxrepo.com/mx/repo/ buster main non-free" > /etc/apt/sources.li
 sudo apt update
 sudo apt install xfce4-panel -y
 rm /etc/apt/sources.list.d/mxrepo.list
+sudo apt remove lxpanel
 rm -rf /tmp2

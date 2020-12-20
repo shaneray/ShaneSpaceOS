@@ -11,8 +11,14 @@ xfce4-panel
 xfce4-whiskermenu-plugin
 xfce4-clipman-plugin
 xfce4-genmon-plugin
+xfce4-pulseaudio-plugin
+xfce4-power-manager
 
 # GUI Apps
+bluez
+blueman
+pulseaudio
+pavucontrol
 xserver-xorg-input-synaptics
 wicd-gtk
 vlc
@@ -31,6 +37,7 @@ xcompmgr
 xrdp
 xorgxrdp
 catfish
+hardinfo
 
 # Utilities
 sudo
@@ -44,7 +51,6 @@ gnupg2
 grub-common
 pciutils
 debconf-utils
-hardinfo
 ntfs-3g
 zip
 unzip
