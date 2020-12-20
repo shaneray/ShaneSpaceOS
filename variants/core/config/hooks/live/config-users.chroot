@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+set_password()
+{
+	username="$1"
+	password="$2"
+	echo "${username}:${password}" | chpasswd
+}
+
+# create user with default password
+add_user()
+{
+	username="$1"
+	fullname="$2"
+	user_exists=$(getent passwd "$username")
+	
+	if [ -z "$user_exists" ]
+	then
+		adduser --disabled-login --gecos "$fullname,,," "$username"
+		set_password "$username" "$username"
+	else
+		echo "User \"$username\" already exists."
+	fi
+}
+
+set_password "root" "root"
+add_user "live" "Live User"
+add_user "admin" "Administrator"
