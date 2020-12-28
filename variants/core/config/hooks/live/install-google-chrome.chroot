@@ -1,11 +1,22 @@
 #!/bin/sh
 
-set -e
+set -ex
+
 
 mkdir -p /tmp2
 cd /tmp2
 
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
+
+#apt install sudo wget gnupg2 ca-certificates ca-certificates curl -y
+
+echo "grabbing google chrome apt key"
+sudo wget -O ./google-chrome.tmp https://dl.google.com/linux/linux_signing_key.pub 
+
+echo "converting google chrome apt key"
+gpg --no-default-keyring --keyring ./google-chrome.tmp2 --import ./google-chrome.tmp
+gpg --no-default-keyring --keyring ./google-chrome.tmp2 --export > ./google-chrome.gpg
+sudo mv ./google-chrome.gpg /etc/apt/trusted.gpg.d/google-chrome.gpg
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome-stable_current_amd64.deb -y
 

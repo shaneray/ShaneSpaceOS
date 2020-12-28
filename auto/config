@@ -8,6 +8,9 @@ HOSTNAME="ShaneSpace-Live"
 mkdir -p ./dist
 cd ./dist
 
+config_check="./.build/config"
+[ -f "${config_check}" ] && { echo "config already completed."; return; }
+
 # run config
 lb config noauto \
   --architectures amd64 \

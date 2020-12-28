@@ -2,15 +2,42 @@
 
 set -e
 
+set_password()
+{
+	username="$1"
+	password="$2"
+	echo "Setting password for ${username}"
+	echo "${username}:${password}" | chpasswd
+}
+
+# create user with default password
+add_user()
+{
+	username="$1"
+	fullname="$2"
+	
+	if ! getent passwd "$username"
+	then
+		echo "Adding user ${username}"
+		adduser --disabled-login --gecos "$fullname,,," "$username"
+		set_password "$username" "$username"
+	else
+		echo "User \"$username\" already exists."
+	fi
+	
+	return 0
+}
+
 # create octoprint user
-adduser --disabled-password --gecos "OctoPrint,,," octoprint
-echo "octoprint:ender3" | chpasswd
+add_user "octoprint" "OctoPrint User"
+set_password "octoprint" "ender3"
+
 sudo usermod -a -G tty octoprint
 sudo usermod -a -G dialout octoprint
 
 # install octoPrint software
 cd /lib
-sudo mkdir OctoPrint && cd octoPrint
+sudo mkdir -p OctoPrint && cd OctoPrint
 sudo python3 -m venv venv
 . venv/bin/activate
 pip install pip --upgrade

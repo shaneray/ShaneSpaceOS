@@ -6,6 +6,7 @@ set_password()
 {
 	username="$1"
 	password="$2"
+	echo "Setting password for ${username}"
 	echo "${username}:${password}" | chpasswd
 }
 
@@ -14,15 +15,17 @@ add_user()
 {
 	username="$1"
 	fullname="$2"
-	user_exists=$(getent passwd "$username")
 	
-	if [ -z "$user_exists" ]
+	if ! getent passwd "$username"
 	then
+		echo "Adding user ${username}"
 		adduser --disabled-login --gecos "$fullname,,," "$username"
 		set_password "$username" "$username"
 	else
 		echo "User \"$username\" already exists."
 	fi
+	
+	return 0
 }
 
 set_password "root" "root"
