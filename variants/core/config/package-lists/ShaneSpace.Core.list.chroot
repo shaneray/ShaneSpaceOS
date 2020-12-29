@@ -1,13 +1,22 @@
+################################
 # Audio
-bluez                           # BlueZ is the official Linux Bluetooth protocol stack.
-pulseaudio                      # network-capable sound server program
-pulseaudio-module-bluetooth     # enables PulseAudio to work with bluetooth devices, like headset or audio gateway
+################################
+# BlueZ is the official Linux Bluetooth protocol stack.
+bluez
+# network-capable sound server program
+pulseaudio
+# enables PulseAudio to work with bluetooth devices, like headset or audio gateway
+pulseaudio-module-bluetooth
 
+################################
 # Boot Animation
+################################
 plymouth
 plymouth-themes
 
+################################
 # Utilities
+################################
 sudo
 openssh-server
 localepurge
@@ -31,10 +40,21 @@ git
 ca-certificates
 apt-transport-https
 
-# HyperV integration: http://kb.rkidder.com/index.php?action=artikel&cat=2&id=49&artlang=en
+###############################
+# Other
+###############################
+# colored emoji
+fonts-noto-color-emoji
+
+################################
+# HyperV integration
+# http://kb.rkidder.com/index.php?action=artikel&cat=2&id=49&artlang=en
+################################
 hyperv-daemons
 
+################################
 # network
+################################
 ifupdown
 iproute2
 isc-dhcp-client
@@ -44,10 +64,13 @@ gvfs
 gvfs-backends
 rfkill
 
+################################
 # Graveyard
-gtk-3-examples              # contains the example files and a demonstration program for GTK+3.
-libgtk-3-dev                # contains the header and development files which are needed for building GTK applications
-plymouth-x11                # contains the log viewer and the X11 renderer for a graphical boot splash.
-dconf-editor                # Graphical editor for DConf
-qt5ct                       # GUI to configure Qt5 settings (theme, font, icons, etc.)
-xdotool                     # lets you programatically (or manually) simulate keyboard input and mouse activity, move and resize windows, etc.
+# May move to development list...
+################################
+# gtk-3-examples              # contains the example files and a demonstration program for GTK+3.
+# libgtk-3-dev                # contains the header and development files which are needed for building GTK applications
+# plymouth-x11                # contains the log viewer and the X11 renderer for a graphical boot splash.
+# dconf-editor                # Graphical editor for DConf
+# qt5ct                       # GUI to configure Qt5 settings (theme, font, icons, etc.)
+# xdotool                     # lets you programatically (or manually) simulate keyboard input and mouse activity, move and resize windows, etc.
