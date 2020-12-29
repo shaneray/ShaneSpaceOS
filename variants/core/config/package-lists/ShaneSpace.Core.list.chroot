@@ -39,6 +39,7 @@ jq
 git
 ca-certificates
 apt-transport-https
+dconf-gsettings-backend
 
 ###############################
 # Other
