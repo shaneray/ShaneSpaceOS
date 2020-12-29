@@ -21,7 +21,6 @@
         <value type="int" value="1"/>
         <value type="int" value="8"/>
         <value type="int" value="5"/>
-        <value type="int" value="18"/>
         <value type="int" value="9"/>
       </property>
       <property name="background-style" type="uint" value="0"/>
@@ -38,7 +37,7 @@
         <value type="double" value="0.211765"/>
         <value type="double" value="1.000000"/>
       </property>
-      <property name="icon-size" type="uint" value="32"/>
+      <property name="icon-size" type="uint" value="30"/>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
     </property>
@@ -81,7 +80,6 @@
       <property name="style" type="uint" value="1"/>
       <property name="expand" type="bool" value="false"/>
     </property>
-    <property name="plugin-18" type="string" value="showdesktop"/>
     <property name="plugin-1" type="string" value="xfce4-clipman-plugin"/>
     <property name="clipman" type="empty">
       <property name="tweaks" type="empty">

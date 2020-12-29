@@ -17,6 +17,8 @@ xfce4-pulseaudio-plugin
 xfce4-power-manager
 # notification daemon for Xfce that implements the Freedesktop.org Desktop Notifications Specification
 xfce4-notifyd
+# clipboard manager
+xfce4-clipman-plugin
 
 ##########
 # Tools
@@ -49,8 +51,6 @@ xcape
 libnotify-bin
 # graphical interface to configure the printing system
 system-config-printer
-# lightweight GTK+ clipboard manager
-clipit
 # manage and configure disk drives and media
 gnome-disk-utility
 # Cross-platform configuration utilities for GNOME
@@ -70,4 +70,3 @@ geany
 # Maybe later
 ################
 # alsamixergui                  # graphical soundcard mixer.  It supports multiple soundcards with multiple devices.
-# xfce4-clipman-plugin          # trying out clipit
