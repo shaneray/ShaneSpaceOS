@@ -43,6 +43,20 @@ sudo python3 -m venv venv
 pip install pip --upgrade
 pip install --no-cache-dir octoprint
 deactivate
+
 # create octoPrint service
-sudo mv /lib/OctoPrint/octoprint.service /etc/systemd/system/octoprint.service
+SERVICE_FILE="/lib/OctoPrint/octoprint.service"
+SYSTEMD_SERVICE_FILE="/etc/systemd/system/octoprint.service"
+[ -f "$SERVICE_FILE" ] &&
+{
+	echo "Copying OctoPrint service to systemd directory."
+	sudo mv "$SERVICE_FILE" "$SYSTEMD_SERVICE_FILE"
+}
+
+[ -f "$SYSTEMD_SERVICE_FILE" ] ||
+{
+	echo "Copying OctoPrint service to systemd directory failed." >&2;
+	return 1;
+}
+
 systemctl enable octoprint.service

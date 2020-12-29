@@ -2,10 +2,20 @@
 
 set -e
 
-mkdir -p /tmp2
-cd /tmp2
+LIVE_BUILD_TMP="/tmp2"
+mkdir -p "$LIVE_BUILD_TMP"
 
-wget https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb
-sudo apt install -y ./teamviewer-host_amd64.deb
+if [ -f "$LIVE_BUILD_TMP/teamviewer-host_amd64.deb" ]
+then
+{
+	echo "Using cached copy of teamviewer-host_amd64.deb"
+}
+else
+{
+	echo "Downloading teamviewer-host_amd64.deb"
+	wget -O "$LIVE_BUILD_TMP/teamviewer-host_amd64.deb" https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb
+}
+fi
 
-rm -rf /tmp2
+
+sudo apt install -y "$LIVE_BUILD_TMP/teamviewer-host_amd64.deb"

@@ -1,24 +1,45 @@
 #!/bin/sh
 
-set -ex
+set -e
 
+LIVE_BUILD_TMP="/tmp2"
+mkdir -p "$LIVE_BUILD_TMP"
 
-mkdir -p /tmp2
-cd /tmp2
+if [ -f "/etc/apt/trusted.gpg.d/google-chrome.gpg" ]
+then
+{
+	echo "Using cached google chrome gpg key"
+}
+else
+{
+	if [ -f "$LIVE_BUILD_TMP/linux_signing_key.pub" ]
+	then
+	{
+		echo "Using cached google chrome linux_signing_key.pub"
+	}
+	else
+	{
+		echo "Downloading google chrome linux_signing_key.pub"
+		sudo wget -O "$LIVE_BUILD_TMP/linux_signing_key.pub" https://dl.google.com/linux/linux_signing_key.pub 
+	}
+	fi
+	
+	echo "converting google chrome apt key"
+	gpg --no-default-keyring --keyring "$LIVE_BUILD_TMP/google-chrome.tmp" --import "$LIVE_BUILD_TMP/linux_signing_key.pub"
+	gpg --no-default-keyring --keyring "$LIVE_BUILD_TMP/google-chrome.tmp" --export > "$LIVE_BUILD_TMP/google-chrome.gpg"
+	sudo mv "$LIVE_BUILD_TMP/google-chrome.gpg" "/etc/apt/trusted.gpg.d/google-chrome.gpg"
+}
+fi
 
-APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
+if [ -f "$LIVE_BUILD_TMP/google-chrome-stable_current_amd64.deb" ]
+then
+{
+	echo "Using cached google chrome apt package"
+}
+else
+{
+	wget -O "$LIVE_BUILD_TMP/google-chrome-stable_current_amd64.deb" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+}
+fi
 
-#apt install sudo wget gnupg2 ca-certificates ca-certificates curl -y
-
-echo "grabbing google chrome apt key"
-sudo wget -O ./google-chrome.tmp https://dl.google.com/linux/linux_signing_key.pub 
-
-echo "converting google chrome apt key"
-gpg --no-default-keyring --keyring ./google-chrome.tmp2 --import ./google-chrome.tmp
-gpg --no-default-keyring --keyring ./google-chrome.tmp2 --export > ./google-chrome.gpg
-sudo mv ./google-chrome.gpg /etc/apt/trusted.gpg.d/google-chrome.gpg
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb -y
-
-cd /
-rm -rf /tmp2
+sudo apt install "$LIVE_BUILD_TMP/google-chrome-stable_current_amd64.deb" -y

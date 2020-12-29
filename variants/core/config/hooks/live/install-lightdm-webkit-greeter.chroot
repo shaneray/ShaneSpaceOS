@@ -2,14 +2,8 @@
 
 set -e
 
-mkdir -p /tmp2
-cd /tmp2
-
 echo 'deb http://download.opensuse.org/repositories/home:/antergos/Debian_9.0/ /' | sudo tee /etc/apt/sources.list.d/home:antergos.list
 curl -fsSL https://download.opensuse.org/repositories/home:antergos/Debian_9.0/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_antergos.gpg > /dev/null
 sudo apt update
 sudo apt install lightdm-webkit2-greeter -y
 rm /etc/apt/sources.list.d/home:antergos.list
-
-cd /
-rm -rf /tmp2

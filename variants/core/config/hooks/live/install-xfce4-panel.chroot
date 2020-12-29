@@ -2,14 +2,26 @@
 
 set -e
 
+LIVE_BUILD_TMP="/tmp2"
+mkdir -p "$LIVE_BUILD_TMP"
+
 # Install xfce4-panel 4.14
-mkdir -p /tmp2
-cd /tmp2
-wget http://mxrepo.com/mx/repo/pool/main/m/mx19-archive-keyring/mx19-archive-keyring_2019.5.31_all.deb
-sudo apt install ./mx19-archive-keyring_2019.5.31_all.deb
+if [ -f "$LIVE_BUILD_TMP/mx19-archive-keyring_2019.5.31_all.deb" ]
+then
+{
+	echo "Using cached copy of mx19-archive-keyring_2019.5.31_all.deb"
+}
+else
+{
+	echo "Downloading mx19-archive-keyring_2019.5.31_all.deb"
+	wget -O "$LIVE_BUILD_TMP/mx19-archive-keyring_2019.5.31_all.deb" http://mxrepo.com/mx/repo/pool/main/m/mx19-archive-keyring/mx19-archive-keyring_2019.5.31_all.deb
+}
+fi
+
+sudo apt install "$LIVE_BUILD_TMP/mx19-archive-keyring_2019.5.31_all.deb"
+
 echo "deb http://mxrepo.com/mx/repo/ buster main non-free" > /etc/apt/sources.list.d/mxrepo.list
 sudo apt update
 sudo apt install xfce4-panel -y
 rm /etc/apt/sources.list.d/mxrepo.list
 sudo apt remove lxpanel -y
-rm -rf /tmp2
