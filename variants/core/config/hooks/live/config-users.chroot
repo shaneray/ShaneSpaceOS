@@ -2,32 +2,8 @@
 
 set -e
 
-set_password()
-{
-	username="$1"
-	password="$2"
-	echo "Setting password for ${username}"
-	echo "${username}:${password}" | chpasswd
-}
+source "/lib/live-build/hook-functions"
 
-# create user with default password
-add_user()
-{
-	username="$1"
-	fullname="$2"
-	
-	if ! getent passwd "$username"
-	then
-		echo "Adding user ${username}"
-		adduser --disabled-login --gecos "$fullname,,," "$username"
-		set_password "$username" "$username"
-	else
-		echo "User \"$username\" already exists."
-	fi
-	
-	return 0
-}
-
-set_password "root" "root"
+set_password "root"
 add_user "live" "Live User"
-add_user "admin" "Administrator"
+add_sudo_user "admin" "Administrator"

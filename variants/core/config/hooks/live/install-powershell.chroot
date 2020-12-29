@@ -1,24 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-LIVE_BUILD_TMP="/tmp2"
-mkdir -p "$LIVE_BUILD_TMP"
-
-# Download the Microsoft repository GPG keys
-if [ -f "$LIVE_BUILD_TMP/packages-microsoft-prod.deb" ]
-then
-{
-	echo "Using cached Microsoft repository GPG keys"
-}
-else
-{
-	wget -O "$LIVE_BUILD_TMP/packages-microsoft-prod.deb" https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb
-}
-fi
+source "/lib/live-build/hook-functions"
 
 # Register the Microsoft repository GPG keys
-apt install "$LIVE_BUILD_TMP/packages-microsoft-prod.deb" -y
+apt_install_http "https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb"
 
 # Update the list of products
 sudo apt-get update

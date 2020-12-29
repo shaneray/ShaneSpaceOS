@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
+
+source "/lib/live-build/hook-functions"
 
 interactive_shell_integration()
 {
@@ -39,28 +41,6 @@ interactive_shell_integration()
 		fi
 		EOF
 	fi
-}
-
-copy()
-{
-	local src=$1
-	local destination=$2
-	
-	mkdir -p "$(dirname "$destination")"
-	echo "Copying file(s) from [$src] to [$destination]"
-	rsync -rah --info=progress2 "$src" "$destination"
-}
-
-sslink()
-{
-	local src
-	src="$(realpath -s "$1")"
-	local destination="$2"
-	local output=""
-	
-	mkdir -p "$(dirname "$destination")"
-	echo "Creating symlink from [$src] to [$destination]"
-	ln -sfT "$src" "$destination"
 }
 
 noninteractive_shell_integration()

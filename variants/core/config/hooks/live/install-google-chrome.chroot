@@ -1,9 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-LIVE_BUILD_TMP="/tmp2"
-mkdir -p "$LIVE_BUILD_TMP"
+source "/lib/live-build/hook-functions"
 
 if [ -f "/etc/apt/trusted.gpg.d/google-chrome.gpg" ]
 then
@@ -12,17 +11,7 @@ then
 }
 else
 {
-	if [ -f "$LIVE_BUILD_TMP/linux_signing_key.pub" ]
-	then
-	{
-		echo "Using cached google chrome linux_signing_key.pub"
-	}
-	else
-	{
-		echo "Downloading google chrome linux_signing_key.pub"
-		sudo wget -O "$LIVE_BUILD_TMP/linux_signing_key.pub" https://dl.google.com/linux/linux_signing_key.pub 
-	}
-	fi
+	get_http_file "https://dl.google.com/linux/linux_signing_key.pub"
 	
 	echo "converting google chrome apt key"
 	gpg --no-default-keyring --keyring "$LIVE_BUILD_TMP/google-chrome.tmp" --import "$LIVE_BUILD_TMP/linux_signing_key.pub"
@@ -31,15 +20,4 @@ else
 }
 fi
 
-if [ -f "$LIVE_BUILD_TMP/google-chrome-stable_current_amd64.deb" ]
-then
-{
-	echo "Using cached google chrome apt package"
-}
-else
-{
-	wget -O "$LIVE_BUILD_TMP/google-chrome-stable_current_amd64.deb" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-}
-fi
-
-sudo apt install "$LIVE_BUILD_TMP/google-chrome-stable_current_amd64.deb" -y
+apt_install_http "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"

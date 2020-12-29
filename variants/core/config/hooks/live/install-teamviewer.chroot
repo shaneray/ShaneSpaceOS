@@ -1,21 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-LIVE_BUILD_TMP="/tmp2"
-mkdir -p "$LIVE_BUILD_TMP"
+source "/lib/live-build/hook-functions"
 
-if [ -f "$LIVE_BUILD_TMP/teamviewer-host_amd64.deb" ]
-then
-{
-	echo "Using cached copy of teamviewer-host_amd64.deb"
-}
-else
-{
-	echo "Downloading teamviewer-host_amd64.deb"
-	wget -O "$LIVE_BUILD_TMP/teamviewer-host_amd64.deb" https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb
-}
-fi
-
-
-sudo apt install -y "$LIVE_BUILD_TMP/teamviewer-host_amd64.deb"
+apt_install_http "https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb"

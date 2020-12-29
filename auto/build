@@ -7,5 +7,5 @@ cd ./dist
 
 lb build noauto "${@}" 2>&1 | tee build.log
 
-echo "Builld completed in $SECONDS seconds"
+echo "Build completed in $SECONDS seconds"
  
