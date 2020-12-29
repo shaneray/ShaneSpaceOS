@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Action
 Profiles=on_folder;
-Name=Open Folder Root
-Tooltip=Open Folder Root
-ToolbarLabel=Open Folder Root
+Name=Open Folder As Root
+Tooltip=Open Folder As Root
+ToolbarLabel=Open Folder As Root
 Icon=gtk-dialog-authentication
 
 [X-Action-Profile on_folder]

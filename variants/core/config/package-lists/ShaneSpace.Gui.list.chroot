@@ -1,0 +1,42 @@
+# Desktop Environment
+task-lxde-desktop               # Lightweight X11 Desktop Environment
+xcompmgr                        # This composition manager implements shadows, fading, proper translucency, and more.
+
+# Panel Start Menu
+xfce4-panel                     # Taskbar (panel)
+xfce4-whiskermenu-plugin        # "Start Menu"
+xfce4-genmon-plugin             # Generic Monitor for the Xfce4 panel
+xfce4-pulseaudio-plugin         # plugin icon to control Pulseaudio
+xfce4-power-manager             # enables laptop users to set up a power profile for two different modes "on battery power" and "on ac power"
+xfce4-notifyd                   # notification daemon for Xfce that implements the Freedesktop.org Desktop Notifications Specification
+
+# Tools
+blueman                         # GTK+ bluetooth management utility
+pavucontrol                     # simple GTK+ based volume control tool
+xserver-xorg-input-synaptics    # Synaptics Touchpad
+xrdp                            # Uses the Remote Desktop Protocol to present a graphical login to a remote client
+xorgxrdp                        # Set of drivers (screen device, keyboard, and mouse) for X.org enabling use through an RDP session with xrdp
+catfish                         # file searching tool for Linux and UNIX
+hardinfo                        # displays information about your hardware and operating system.
+wicd-gtk                        # GTK+ client, tray icon showing network activity and signal strength.
+synaptic                        # Synaptic enables you to install, upgrade and remove software packages in a user friendly way.
+lxqt-sudo                       # Graphical QT frontend for plain sudo(8) (for requesting optional password in GUI fashion)
+lxtask                          # lightweight and desktop-independent task manager
+xcape                           # allows you to use a modifier key as another key when pressed and released on its own
+libnotify-bin                   # sends desktop notifications to a notification daemon, as defined in the Desktop Notifications spec
+system-config-printer           # graphical interface to configure the printing system
+clipit                          # lightweight GTK+ clipboard manager
+gnome-disk-utility              # manage and configure disk drives and media
+gnome-system-tools              # Cross-platform configuration utilities for GNOME
+usermode                        # Graphical tools for user account management tasks
+
+# Applications
+vlc                             # Media player
+geany                           # Text editor
+
+# Other
+fonts-noto-color-emoji          # colored emoji
+
+# Maybe later
+# alsamixergui                  # graphical soundcard mixer.  It supports multiple soundcards with multiple devices.
+# xfce4-clipman-plugin          # trying out clipit

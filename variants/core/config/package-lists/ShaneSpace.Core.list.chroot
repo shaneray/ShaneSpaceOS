@@ -1,43 +1,11 @@
-# Desktop Environment
-task-lxde-desktop
-lxtask
+# Audio
+bluez                           # BlueZ is the official Linux Bluetooth protocol stack.
+pulseaudio                      # network-capable sound server program
+pulseaudio-module-bluetooth     # enables PulseAudio to work with bluetooth devices, like headset or audio gateway
+
+# Boot Animation
 plymouth
 plymouth-themes
-plymouth-x11
-libgtk-3-dev
-
-# Panel Start Menu
-xfce4-panel
-xfce4-whiskermenu-plugin
-xfce4-clipman-plugin
-xfce4-genmon-plugin
-xfce4-pulseaudio-plugin
-xfce4-power-manager
-
-# GUI Apps
-bluez
-blueman
-pulseaudio
-pavucontrol
-xserver-xorg-input-synaptics
-wicd-gtk
-vlc
-dconf-editor
-synaptic
-lxqt-sudo
-lxtask
-qt5ct
-xcape
-xfce4-notifyd
-libnotify-bin
-gtk-3-examples
-fonts-noto-color-emoji
-xdotool
-xcompmgr
-xrdp
-xorgxrdp
-catfish
-hardinfo
 
 # Utilities
 sudo
@@ -75,3 +43,11 @@ wireless-tools
 gvfs
 gvfs-backends
 rfkill
+
+# Graveyard
+gtk-3-examples              # contains the example files and a demonstration program for GTK+3.
+libgtk-3-dev                # contains the header and development files which are needed for building GTK applications
+plymouth-x11                # contains the log viewer and the X11 renderer for a graphical boot splash.
+dconf-editor                # Graphical editor for DConf
+qt5ct                       # GUI to configure Qt5 settings (theme, font, icons, etc.)
+xdotool                     # lets you programatically (or manually) simulate keyboard input and mouse activity, move and resize windows, etc.
