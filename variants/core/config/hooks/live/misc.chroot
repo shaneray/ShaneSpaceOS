@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
 # enable gtk debugging
-gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
+[[ $(gsettings list-schemas) == *"org.gnome.Logs"* ]] && gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
