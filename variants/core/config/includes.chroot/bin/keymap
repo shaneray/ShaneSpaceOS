@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xcape -e 'Super_L=Control_L|Escape'

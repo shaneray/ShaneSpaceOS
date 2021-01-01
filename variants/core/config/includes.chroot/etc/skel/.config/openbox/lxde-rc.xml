@@ -240,19 +240,6 @@
       </action>
     </keybind>
     -->
-    <keybind key="A-Tab">
-      <action name="DesktopNext">
-	    <allDesktops>yes</allDesktops>
-	    <raise>yes</raise>
-      </action>
-    </keybind>
-    <keybind key="A-S-Tab">
-      <action name="DesktopPrevious">
-		<allDesktops>yes</allDesktops>
-        <follow>no</follow>
-	    <raise>yes</raise>
-      </action>
-    </keybind>
     <!-- Windows Actions -->
     <keybind key="A-c">
       <action name="Close">
@@ -489,13 +476,47 @@
     <keybind key="W-Down">
       <action name="Iconify"/>
     </keybind>
-	
+    <keybind key="W-d">
+      <action name="ToggleShowDesktop"/>
+    </keybind>
+    <keybind key="W-e">
+		<action name="Execute">
+			<command>pcmanfm</command>
+			<startupnotify>
+				<enabled>yes</enabled>
+				<name>pcmanfm</name>
+			</startupnotify>
+		</action>
+	</keybind>
+	<keybind key="A-Tab">
+		<action name="NextWindow">
+			<raise>yes</raise>
+		</action>
+	</keybind>
+	<keybind key="A-S-Tab">
+		<action name="PreviousWindow">
+			<raise>yes</raise>
+			</action>
+	</keybind>
+	<keybind key="A-F4">
+		<action name="Close"/>
+	</keybind>
 	<!-- Open Whisker (Start) Menu: Using xcape to map superkey to ctrl+esc -->
 	<keybind key="C-Escape">
+		<action name="Execute">
+			<command>whiskermenu-dbus-x11</command>
+		</action>
+	</keybind>
+	<keybind key="W-r">
+		<action name="Execute">
+			<command>gmrun</command>
+		</action>
+	</keybind>
+	<keybind key="C-A-Delete">
       <action name="Execute">
-      <command>xfce4-popup-whiskermenu</command>
-    </action>
-</keybind>
+        <command>gnome-system-monitor</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>8</dragThreshold>

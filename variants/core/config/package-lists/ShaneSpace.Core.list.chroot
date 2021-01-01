@@ -7,6 +7,8 @@ bluez
 pulseaudio
 # enables PulseAudio to work with bluetooth devices, like headset or audio gateway
 pulseaudio-module-bluetooth
+# the Advanced Linux Sound Architecture.
+alsa-utils
 
 ################################
 # Boot Animation

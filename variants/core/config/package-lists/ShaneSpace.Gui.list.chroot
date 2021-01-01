@@ -23,6 +23,15 @@ xfce4-clipman-plugin
 ##########
 # Tools
 ##########
+dbus-x11
+apt-utils
+xwrited
+gmrun
+accountsservice
+d-feet
+gnome-system-monitor
+xscreensaver
+qt5ct
 # GTK+ bluetooth management utility
 blueman
 # simple GTK+ based volume control tool

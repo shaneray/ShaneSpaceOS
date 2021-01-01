@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $DISPLAY == ":0" ]]
+then
+	echo "Starting xfce4 normally for $DISPLAY."
+	xfce4-panel
+else
+	echo "Starting xfce4 via dbus for $DISPLAY"
+	dbus-launch --exit-with-x11 xfce4-panel
+fi
+:

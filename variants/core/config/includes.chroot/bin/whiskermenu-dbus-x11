@@ -1,0 +1,11 @@
+#!/bin/bash
+get_dbus_session_id()
+{
+	local path="$HOME/.dbus/session-bus/$(cat /var/lib/dbus/machine-id)-${DISPLAY##:}"
+	local dbus_variables="$(cat "${path%.*}")"
+	echo "$dbus_variables"
+}
+
+dbus_variables="$(get_dbus_session_id)"
+eval "$dbus_variables"
+xfce4-panel --plugin-event=whiskermenu:popup:bool:false
