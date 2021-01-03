@@ -6,6 +6,6 @@ then
 	xfce4-panel
 else
 	echo "Starting xfce4 via dbus for $DISPLAY"
-	dbus-launch --exit-with-x11 xfce4-panel
+	dbus-x11-launch xfce4-panel
 fi
 :

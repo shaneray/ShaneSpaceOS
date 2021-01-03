@@ -1,4 +1,4 @@
 @pcmanfm --desktop --profile LXDE
 @xscreensaver -no-splash
-@xcomp
+dbus-x11-launch xcomp
 xfce4-panel-dbus-x11
