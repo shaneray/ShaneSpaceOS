@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# get current script directory
+script_directory="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+# variables
+ss_root_dir="$script_directory/root"
+ss_lib_dir="/usr/share/shanespace/lib"
+
+# include ShaneSpace Bash Extensions
+# shellcheck source=./root/usr/share/shanespace/lib/ss-bashext
+source "${ss_root_dir}${ss_lib_dir}/ss-bashext"
+enable_debugging
+
+# sudo required to copy files
+elevate
+
+h0 "Installing ShaneSpaceOS Tools"
+
+h1 "Installing ShaneSpace Bash Extensions (ss-bashext)"
+src="${ss_root_dir}${ss_lib_dir}/ss-bashext"
+dest="$ss_lib_dir/ss-bashext"
+copy "$src" "$dest"
+#sslink $src $dest
+

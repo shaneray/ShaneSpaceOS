@@ -1,0 +1,5 @@
+Add custom menu/actions to the following locations:
+- Global: /usr/local/share/file-manager/actions
+- User: ~/.local/share/file-manager/actions
+
+https://github.com/madebits/linux-pcmanfm-actions/blob/master/madebits-pca_1.0.0-1/usr/local/share/file-manager/actions/mb-open-as-root.desktop

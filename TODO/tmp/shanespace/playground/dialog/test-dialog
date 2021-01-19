@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# get current script directory
+script_directory="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+zenity --forms --title="Add Friend" \
+	--text="Enter information about your friend." \
+	--separator="," \
+	--add-entry="First Name" \
+	--add-entry="Family Name" \
+	--add-entry="Email" \
+	--add-calendar="Birthday"
+	
+printf '%b\n' "Press any key to exit"
+read

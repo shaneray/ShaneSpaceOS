@@ -75,6 +75,8 @@ usermode
 vlc
 # Text editor
 geany
+# desktop informational overlay
+conky
 
 ################
 # Maybe later

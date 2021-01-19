@@ -3,8 +3,8 @@
 set -e
 
 # Update current working directory to dist directory
-mkdir -p ./work
-cd ./work
+#mkdir -p ./work
+#cd ./work
 
 lb clean noauto "${@}"
 

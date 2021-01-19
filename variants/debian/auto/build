@@ -3,8 +3,7 @@
 set -e
  
 # Update current working directory to dist directory
-cd ./work
-
+#cd ./work
 lb build noauto "${@}" 2>&1 | tee build.log
 
 echo "Build completed in $SECONDS seconds"

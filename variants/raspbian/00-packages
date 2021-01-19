@@ -9,6 +9,6 @@ piclone wiringpi pigpio python-pigpio python3-pigpio raspi-gpio python-gpiozero 
 pprompt piwiz rp-prefapps
 ffmpeg
 vlc
-# pi-package 
+# TODO: pi-package 
 # https://github.com/RPi-Distro/pi-gen/blob/master/stage4/00-install-packages/01-packages
 # https://github.com/RPi-Distro/pi-gen/blob/master/stage4/00-install-packages/02-packages

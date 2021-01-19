@@ -1,0 +1,10 @@
+runas[Desktop Entry]
+Type=Action
+Tooltip=Open Folder As Root
+Name=Open Folder As Root
+Icon=gtk-dialog-authentication
+Profiles=on_folder;
+
+[X-Action-Profile on_folder]
+MimeTypes=inode/directory;
+Exec=runas /usr/bin/pcmanfm %f

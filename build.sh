@@ -11,7 +11,7 @@ build()
 	SS_DISTRO_BUILD_COMMAND="build_debian"
 	case "$SS_DISTRO" in
 		"debian") :;;
-		"raspian") SS_DISTRO_BUILD_COMMAND="build_raspian";;
+		"raspbian") SS_DISTRO_BUILD_COMMAND="build_raspbian";;
 		*)
 			echo_warning "Unknown distrobution defined, or distrobution not set.  Defaulting to \"debian\" distrobution!"
 			SS_DISTRO="debian"
@@ -42,46 +42,46 @@ build_init()
 	
 	# cleaning directories
 	echo_info "Cleaning directories"
-	directory_empty "$WORK_DIR"
-	directory_empty "$DEPLOY_DIR"
+	esudo directory_empty "$WORK_DIR"
+	esudo directory_empty "$DEPLOY_DIR"
 }
 
 build_debian()
 {
 	# get dependencies
 	esudo apt install -y live-build
-	
-	cd "${work_dir}"
-	
-	# copy bootloader files
-	#echo "Copying bootloader files"
-	#cp -r ../bootloaders ./config/
+	cd "${WORK_DIR}"
 
 	# copy core variant files
-	echo "Applying core variant customizations"
+	echo_info "Applying ShaneSpace Debian customizations"
 	cp -r ../variants/debian/* ./
 
-	# run build
+	[[ -f "$CONFIG_DIR/wpa_supplicant.conf" ]] && cp "$CONFIG_DIR/wpa_supplicant.conf" "./config/includes.chroot/etc/wpa_supplicant/wpa_supplicant.conf"
+	
+	# run debian live-build script
 	esudo lb build
+	
+	# copy image to deploy directory
+	cp "${WORK_DIR}/live-image-amd64.hybrid.iso" "${DEPLOY_DIR}/${IMG_NAME}.iso" && echo_success "ShaneSpaceOS image copied to \"${RESET}${DEPLOY_DIR}/${IMG_NAME}.iso${COLOR_TEXT_SUCCESS}\"."
 }
 
-build_raspian()
+build_raspbian()
 {
 	# get dependencies
 	esudo apt install -y coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools bsdtar libcap2-bin grep xz-utils file curl bc
-	local work_dir="$(realpath "$WORK_DIR")"
-	git clone https://github.com/RPi-Distro/pi-gen.git "$(realpath "$WORK_DIR")"
-	chmod +x "${work_dir}/build.sh"
-	touch "${work_dir}/stage3/SKIP" "${work_dir}/stage4/SKIP" "${work_dir}/stage5/SKIP"
-	touch "${work_dir}/stage4/SKIP_IMAGES" "${work_dir}/stage5/SKIP_IMAGES"
+	
+	git clone https://github.com/RPi-Distro/pi-gen.git "${WORK_DIR}"
+	cd "${WORK_DIR}"
+	chmod +x "./build.sh"
+	touch "./stage3/SKIP" "./stage4/SKIP" "./stage5/SKIP"
+	touch "./stage4/SKIP_IMAGES" "./stage5/SKIP_IMAGES"
 	
 	# config
 	local respbian_config="IMG_NAME=\"${IMG_NAME}\"${LF}DEPLOY_ZIP=0${LF}ENABLE_SSH=1"
-	file_write "${work_dir}/config" "${respbian_config}"
+	file_write "./config" "${respbian_config}"
 	
-	# run build
-	cd "${work_dir}"
-	esudo "${work_dir}/build.sh"
+	# run raspbian build script
+	esudo "./build.sh"
 }
 
 config()
@@ -151,11 +151,10 @@ config_prompt()
 	else
 		CONFIG_NAME="SSOS_CUSTOM"
 		CONFIG_FILE=""
-		CONFIG_DIR=""
 	fi
 	
 	# shanespace build config values
-	config_value_prompt SS_DISTRO "ShaneSpace OS Core Distrobution?" "debian" "raspian"
+	config_value_prompt SS_DISTRO "ShaneSpace OS Core Distrobution?" "debian" "raspbian"
 	
 	# If these are updated must modify .gitignore also
 	config_value_prompt WORK_DIR "Work directory?"
@@ -320,10 +319,13 @@ config_load()
 		variable_not_empty WIFI_PSK && config_wifi
 		
 		CONFIG_FILE=""
-		CONFIG_DIR=""
 	}
 	
 	IMG_NAME+="-${CONFIG_NAME//SSOS_/}"
+	
+	variable_not_empty WORK_DIR && WORK_DIR="$(realpath "${WORK_DIR}")"
+	variable_not_empty DEPLOY_DIR && DEPLOY_DIR="$(realpath "${DEPLOY_DIR}")"
+	variable_not_empty SECURE_DIR && SECURE_DIR="$(realpath "${SECURE_DIR}")"
 	
 	return 0
 }
@@ -910,7 +912,7 @@ directory_empty()
 		return 1
 	}
 	
-	rm -rf "$directory_to_empty" && mkdir -p "$directory_to_empty"
+	rm -rf "${directory_to_empty}/{,.[!.],..?}*"
 	echo_success "Directory emptied: ${RESET}$(realpath $directory_to_empty)"
 }
 
@@ -970,6 +972,7 @@ esudo()
 		local error_trap="$(trap | grep ERR$)"
 		local sudo_script="set -${-}; $(declare -p | grep -v 'declare .*r ')${LF}$(declare -f)${LF}"
 		sudo_script+="echo_warning \"The following command is being ran with elevated permission!!!${LF}Command: ${RESET}${sudo_cmd}\"${LF}"
+		sudo_script+="echo_warning \"Current Working Directory: ${RESET}${PWD@Q}\"${LF}"
 		sudo_script+="${sudo_cmd}${LF}"
 		sudo_script+="echo_success \"Command has completed running with elevated permissions: ${RESET}${sudo_cmd}\""
 
@@ -1978,6 +1981,10 @@ TAB=$'\t'
 # allow multiple values (array) per argument
 # -h, --help should be reserved
 # process args ref type
+# prompt password
+# copy wpa_supplicant for debian build
+# shanespace OS for raspbian
+
 params_declare --short "n" --name "new-config" --type "bool" --explanation "Create a new saved configuration."
 params_declare --short "c" --name "config"                   --explanation "The name of a previously saved configuration."
 params_declare --short "d" --name "distro"                   --explanation "The name of the core distrobution you want to build."

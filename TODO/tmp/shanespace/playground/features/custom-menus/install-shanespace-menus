@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# get current script directory
+script_directory="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+printf '%b\n' "Copying Templates..."
+cp -r templates /usr/share
+
+printf '%b\n' "Copying menu items..."
+mkdir -p /usr/local/share/file-manager
+cp -r actions /usr/local/share/file-manager
+
+printf '%b\n' "Press any key to restart PCManFM and exit"
+read
+
+killall pcmanfm

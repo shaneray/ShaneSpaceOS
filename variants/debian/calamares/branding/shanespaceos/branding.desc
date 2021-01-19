@@ -1,0 +1,27 @@
+---
+componentName:   shanespaceos
+welcomeStyleCalamares: true
+
+strings:
+    productName:         ShaneSpaceOS
+    shortProductName:    ShaneSpaceOS
+    version:             1
+    shortVersion:        1
+    versionedName:       ShaneSpaceOS 1
+    shortVersionedName:  ShaneSpaceOS 1
+    bootloaderEntryName: Debian
+    productUrl:          
+    supportUrl:          
+    releaseNotesUrl:     
+
+images:
+    productLogo:         "shanespaceos-logo.png"
+    productIcon:         "shanespaceos-logo.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+
+style:
+   sidebarBackground:    "#2c3133"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#4d7079"

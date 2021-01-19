@@ -78,7 +78,8 @@ get_http_file()
 	}
 	else
 	{
-		wget -O "$LIVE_BUILD_TMP/$filename" "$url"
+		echo "Downloading \"filename\" from \"$url\""
+		wget -nv -O "$LIVE_BUILD_TMP/$filename" "$url"
 	}
 	fi
 }

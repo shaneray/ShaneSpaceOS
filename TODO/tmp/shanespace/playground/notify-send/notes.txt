@@ -1,0 +1,1 @@
+notify-send --app-name=ShaneSpaceOS --icon=gtk-dialog-info "Notification Summary" "Detailed Message, full of information for the user!"

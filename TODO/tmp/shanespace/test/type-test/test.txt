@@ -1,0 +1,110 @@
+*.nuv *.cab *.mka *.tif *.zoo *.ogm *.cpio *.mpeg *.yuv *.mjpg *.esd *.oga *.gif *.rz other writable directory *.m4a *.ogg *.m2v *.ogx set uid *.ra *.vob directory *.mkv *.aac *.7z set gid *.lzo *.m4v *.zst *.lzh *.rm *.ogv *.tz sticky other writable directory *.tzo *.rar *.wmv *.ppm *.gz *.mp4v *.avi *.bz2 *.z *.lzma *.ace *.dwm *.ear named pipe, AKA FIPO *.gl *.png *.deb socket missing file *.zip *.taz *.pgm *.cgm *.mjpeg *.mpg *.bmp character device *.mpc *.xpm *.tar *.tiff *.wav *.lz4 *.au *.xspf *.xbm *.svg *.war executable *.rmvb *.webm *.tga *.spx *.opus *.xz *.pbm door *.flv *.fli *.tlz sticky directory *.alz *.rpm ca *.xwd *.lz *.swm *.mov *.bz *.flc *.emf *.jar *.tgz *.txz *.tbz2 *.sar multiple hard links rs *.svgz *.arj *.mp4 *.flac orphan symbolic link *.t7z *.mp3 *.mid *.tzst *.dz *.arc *.xcf *.qt *.wim *.pcx *.jpg *.lrz symbolic link *.dl *.asf *.mng *.jpeg *.midi *.lha block device *.tbz
+type-test/fake.mp3 == *.nuv
+type-test/fake.mp3 == *.cab
+type-test/fake.mp3 == *.mka
+type-test/fake.mp3 == *.tif
+type-test/fake.mp3 == *.zoo
+type-test/fake.mp3 == *.ogm
+type-test/fake.mp3 == *.cpio
+type-test/fake.mp3 == *.mpeg
+type-test/fake.mp3 == *.yuv
+type-test/fake.mp3 == *.mjpg
+type-test/fake.mp3 == *.esd
+type-test/fake.mp3 == *.oga
+type-test/fake.mp3 == *.gif
+type-test/fake.mp3 == *.rz
+type-test/fake.mp3 == other writable directory
+type-test/fake.mp3 == *.m4a
+type-test/fake.mp3 == *.ogg
+type-test/fake.mp3 == *.m2v
+type-test/fake.mp3 == *.ogx
+type-test/fake.mp3 == set uid
+type-test/fake.mp3 == *.ra
+type-test/fake.mp3 == *.vob
+type-test/fake.mp3 == directory
+type-test/fake.mp3 == *.mkv
+type-test/fake.mp3 == *.aac
+type-test/fake.mp3 == *.7z
+type-test/fake.mp3 == set gid
+type-test/fake.mp3 == *.lzo
+type-test/fake.mp3 == *.m4v
+type-test/fake.mp3 == *.zst
+type-test/fake.mp3 == *.lzh
+type-test/fake.mp3 == *.rm
+type-test/fake.mp3 == *.ogv
+type-test/fake.mp3 == *.tz
+type-test/fake.mp3 == sticky other writable directory
+type-test/fake.mp3 == *.tzo
+type-test/fake.mp3 == *.rar
+type-test/fake.mp3 == *.wmv
+type-test/fake.mp3 == *.ppm
+type-test/fake.mp3 == *.gz
+type-test/fake.mp3 == *.mp4v
+type-test/fake.mp3 == *.avi
+type-test/fake.mp3 == *.bz2
+type-test/fake.mp3 == *.z
+type-test/fake.mp3 == *.lzma
+type-test/fake.mp3 == *.ace
+type-test/fake.mp3 == *.dwm
+type-test/fake.mp3 == *.ear
+type-test/fake.mp3 == named pipe, AKA FIPO
+type-test/fake.mp3 == *.gl
+type-test/fake.mp3 == *.png
+type-test/fake.mp3 == *.deb
+type-test/fake.mp3 == socket
+type-test/fake.mp3 == missing file
+type-test/fake.mp3 == *.zip
+type-test/fake.mp3 == *.taz
+type-test/fake.mp3 == *.pgm
+type-test/fake.mp3 == *.cgm
+type-test/fake.mp3 == *.mjpeg
+type-test/fake.mp3 == *.mpg
+type-test/fake.mp3 == *.bmp
+type-test/fake.mp3 == character device
+type-test/fake.mp3 == *.mpc
+type-test/fake.mp3 == *.xpm
+type-test/fake.mp3 == *.tar
+type-test/fake.mp3 == *.tiff
+type-test/fake.mp3 == *.wav
+type-test/fake.mp3 == *.lz4
+type-test/fake.mp3 == *.au
+type-test/fake.mp3 == *.xspf
+type-test/fake.mp3 == *.xbm
+type-test/fake.mp3 == *.svg
+type-test/fake.mp3 == *.war
+type-test/fake.mp3 == executable
+type-test/fake.mp3 == *.rmvb
+type-test/fake.mp3 == *.webm
+type-test/fake.mp3 == *.tga
+type-test/fake.mp3 == *.spx
+type-test/fake.mp3 == *.opus
+type-test/fake.mp3 == *.xz
+type-test/fake.mp3 == *.pbm
+type-test/fake.mp3 == door
+type-test/fake.mp3 == *.flv
+type-test/fake.mp3 == *.fli
+type-test/fake.mp3 == *.tlz
+type-test/fake.mp3 == sticky directory
+type-test/fake.mp3 == *.alz
+type-test/fake.mp3 == *.rpm
+type-test/fake.mp3 == ca
+type-test/fake.mp3 == *.xwd
+type-test/fake.mp3 == *.lz
+type-test/fake.mp3 == *.swm
+type-test/fake.mp3 == *.mov
+type-test/fake.mp3 == *.bz
+type-test/fake.mp3 == *.flc
+type-test/fake.mp3 == *.emf
+type-test/fake.mp3 == *.jar
+type-test/fake.mp3 == *.tgz
+type-test/fake.mp3 == *.txz
+type-test/fake.mp3 == *.tbz2
+type-test/fake.mp3 == *.sar
+type-test/fake.mp3 == multiple hard links
+type-test/fake.mp3 == rs
+type-test/fake.mp3 == *.svgz
+type-test/fake.mp3 == *.arj
+type-test/fake.mp3 == *.mp4
+type-test/fake.mp3 == *.flac
+type-test/fake.mp3 == orphan symbolic link
+type-test/fake.mp3 == *.t7z

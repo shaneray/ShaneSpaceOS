@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Bash file
+Comment=New Bash File:
+Type=Link
+URL=/usr/share/templates/.source/bash-template
+Icon=document-new

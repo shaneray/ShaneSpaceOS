@@ -5,8 +5,8 @@ set -e
 HOSTNAME="ShaneSpace-Live"
 
 # Update current working directory to dist directory
-mkdir -p ./work
-cd ./work
+#mkdir -p ./work
+#cd ./work
 
 # config_check="./.build/config"
 # [ -f "${config_check}" ] && { echo "config already completed."; return; }
@@ -22,6 +22,8 @@ lb config noauto \
   --apt-recommends false \
   --archive-areas "main contrib non-free" \
   --bootappend-live "boot=live components noautologin timezone=America/New_York quiet splash hostname=ShaneSpaceOS" \
+  --debian-installer live \
+  --debian-installer-gui true \
   --iso-application ShaneSpaceOS \
   --iso-preparer Shane-https://shanespace.net \
   --iso-publisher Shane-https://shanespace.net \
@@ -29,9 +31,6 @@ lb config noauto \
   --mirror-bootstrap=http://ftp.us.debian.org/debian
   hostname=$HOSTNAME \
   "${@}"
-
-# --interactive shell \
-# live-config.user-default-groups=audio,cdrom,dip,floppy,video,plugdev,netdev,powerdev,scanner,bluetooth,fuse
 
 # extract icons
 tar -zxvf config/includes.chroot/usr/share/icons/Windows-10.tar.gz -C config/includes.chroot/usr/share/icons/
