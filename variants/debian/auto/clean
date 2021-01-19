@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+# Update current working directory to dist directory
+mkdir -p ./work
+cd ./work
+
+lb clean noauto "${@}"
+
+rm -f config/binary config/bootstrap config/chroot config/common config/source
+rm -f build.log

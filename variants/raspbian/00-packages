@@ -1,0 +1,14 @@
+# python python-tk python-serial python-picamera python-pip python-spidev python-smbus
+python3 python3-tk python3-serial python3-picamera python3-pip python3-numpy python3-spidev python3-smbus
+thonny
+pypy
+raspberrypi-net-mods raspberrypi-ui-mods
+rc-gui
+libgl1-mesa-dri libgles1 libgles2-mesa
+piclone wiringpi pigpio python-pigpio python3-pigpio raspi-gpio python-gpiozero python3-gpiozero python3-rpi.gpio
+pprompt piwiz rp-prefapps
+ffmpeg
+vlc
+# pi-package 
+# https://github.com/RPi-Distro/pi-gen/blob/master/stage4/00-install-packages/01-packages
+# https://github.com/RPi-Distro/pi-gen/blob/master/stage4/00-install-packages/02-packages

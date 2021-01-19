@@ -1,0 +1,4 @@
+# Build parameters
+IMG_NAME="ShaneSpaceOS_Raspbian"
+DEPLOY_ZIP=0
+ENABLE_SSH=1

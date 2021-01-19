@@ -1,0 +1,19 @@
+# Build
+SS_VARIANT="core"
+
+# If these are updated must modify .gitignore also
+WORK_DIR="./work"
+DEPLOY_DIR="./dist"
+SECURE_DIR="./secure"
+
+# Localization
+LOCALE_DEFAULT="en_US.UTF-8"
+TIMEZONE_DEFAULT="America/New_York"
+KEYBOARD_KEYMAP="us"
+KEYBOARD_LAYOUT="us"
+
+# System Parameters
+RELEASE="buster"
+TARGET_HOSTNAME="SSOS"
+FIRST_USER_NAME="admin"
+FIRST_USER_PASS="admin"
