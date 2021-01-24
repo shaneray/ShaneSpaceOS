@@ -56,7 +56,14 @@ build_debian()
 	echo_info "Applying ShaneSpace Debian customizations"
 	cp -r ../variants/debian/* ./
 
-	[[ -f "$CONFIG_DIR/wpa_supplicant.conf" ]] && cp "$CONFIG_DIR/wpa_supplicant.conf" "./config/includes.chroot/etc/wpa_supplicant/wpa_supplicant.conf"
+	if [[ -f "$CONFIG_DIR/wpa_supplicant.conf" ]]
+	then
+		mkdir -p "./config/includes.chroot/etc/wpa_supplicant"
+		cp "$CONFIG_DIR/wpa_supplicant.conf" "./config/includes.chroot/etc/wpa_supplicant/wpa_supplicant.conf"
+		echo_success "WPA supplicant file added added to image."
+	else
+		echo_warning "WPA supplicant file not found at \"$CONFIG_DIR/wpa_supplicant.conf\", wifi will not be auto configured."
+	fi
 	
 	# run debian live-build script
 	esudo lb build
@@ -326,6 +333,7 @@ config_load()
 	variable_not_empty WORK_DIR && WORK_DIR="$(realpath "${WORK_DIR}")"
 	variable_not_empty DEPLOY_DIR && DEPLOY_DIR="$(realpath "${DEPLOY_DIR}")"
 	variable_not_empty SECURE_DIR && SECURE_DIR="$(realpath "${SECURE_DIR}")"
+	variable_not_empty CONFIG_DIR && CONFIG_DIR="$(realpath "${CONFIG_DIR}")"
 	
 	return 0
 }

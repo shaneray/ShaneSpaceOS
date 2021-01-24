@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+source "/lib/live-build/hook-functions"
+
+SHANESPACEOS_THEME_DIR="/usr/share/desktop-base/shanespaceos-theme"
+sslink "/etc/alternatives/desktop-theme" "${SHANESPACEOS_THEME_DIR}"
+sslink "/etc/alternatives/vendor-logos" "/usr/share/desktop-base/shanespaceos-logos"
+sslink "${SHANESPACEOS_THEME_DIR}/plymouth" "/usr/share/plymouth/themes/Earth-sunrise"

@@ -68,6 +68,13 @@ gnome-system-tools
 # Graphical tools for user account management tasks
 usermode
 
+lua-lpeg
+fonts-font-awesome
+conky-all
+
+calamares
+calamares-settings-debian
+
 ################
 # Applications
 ################
@@ -75,8 +82,6 @@ usermode
 vlc
 # Text editor
 geany
-# desktop informational overlay
-conky
 
 ################
 # Maybe later

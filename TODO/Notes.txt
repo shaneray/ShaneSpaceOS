@@ -1,0 +1,7 @@
+Rebuild Grub EFI
+=======================
+mount /dev/mmcblk0p2 /mnt
+mount /dev/mmcblk0p1 /mnt/boot/efi
+for i in /dev /dev/pts /proc /sys /sys/firmware/efi/efivars /run /etc/resolv.conf /etc/default; do sudo mount -B $i /mnt$i; done
+sudo chroot /mnt
+grub-install /dev/mmcblk0p
