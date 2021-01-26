@@ -920,7 +920,7 @@ directory_empty()
 		return 1
 	}
 	
-	rm -rf "${directory_to_empty}/{,.[!.],..?}*"
+	rm -rf "${directory_to_empty}/"{,.[!.],..?}*
 	echo_success "Directory emptied: ${RESET}$(realpath $directory_to_empty)"
 }
 

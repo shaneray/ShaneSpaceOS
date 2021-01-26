@@ -3,6 +3,7 @@
 set -e
 
 HOSTNAME="ShaneSpace-Live"
+CONFIG_DIR="$(realpath ./config)"
 
 # run config
 lb config noauto \
@@ -31,12 +32,12 @@ tar -zxvf ./config/includes.chroot/usr/share/icons/Windows-10.tar.gz -C ./config
 rm ./config/includes.chroot/usr/share/icons/Windows-10.tar.gz
 
 # add symbolic links
-ln -sf ./config/includes.installer/usr/share/graphics/logo_shanespaceos.png ./config/includes.installer/usr/share/graphics/logo_installer.png
-ln -sf ./config/includes.installer/usr/share/graphics/logo_shanespaceos_dark.png ./config/includes.installer/usr/share/graphics/logo_installer_dark.png
-ln -sf ./config/includes.chroot/etc/skel/.conkyrc ./config/includes.chroot/lib/conky/themes/fancy.conf
+ln -sf /usr/share/graphics/logo_shanespaceos.png ${CONFIG_DIR}/includes.installer/usr/share/graphics/logo_installer.png
+ln -sf /usr/share/graphics/logo_shanespaceos_dark.png ${CONFIG_DIR}/includes.installer/usr/share/graphics/logo_installer_dark.png
+ln -sf /lib/conky/themes/fancy.conf ${CONFIG_DIR}/includes.chroot/etc/skel/.conkyrc 
 
 # copy skel to root
-cp -r ./config/includes.chroot/etc/skel/* ./root/
+cp -rT ./config/includes.chroot/etc/skel ./config/includes.chroot/root
 
 # copy theme to installer
 mkdir -p ./config/includes.installer/usr/share/themes/Windows-10-Dark

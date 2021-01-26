@@ -117,5 +117,5 @@ sslink()
 	
 	mkdir -p "$(dirname "$destination")"
 	echo "Creating symlink from [$src] to [$destination]"
-	ln -sf "$src" "$destination"
+	ln -snfv "$src" "$destination"
 }
