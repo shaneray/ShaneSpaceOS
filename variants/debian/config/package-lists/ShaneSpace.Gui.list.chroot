@@ -19,10 +19,13 @@ xfce4-power-manager
 xfce4-notifyd
 # clipboard manager
 xfce4-clipman-plugin
+# cairo-based gtk+-2.0 theme engine
+gtk2-engines-murrine
 
 ##########
 # Tools
 ##########
+gnome-keyring
 alacarte
 dbus-x11
 apt-utils

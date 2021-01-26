@@ -4,13 +4,6 @@ set -e
 
 HOSTNAME="ShaneSpace-Live"
 
-# Update current working directory to dist directory
-#mkdir -p ./work
-#cd ./work
-
-# config_check="./.build/config"
-# [ -f "${config_check}" ] && { echo "config already completed."; return; }
-
 # run config
 lb config noauto \
   --architectures amd64 \
@@ -21,8 +14,8 @@ lb config noauto \
   --debootstrap-options "--variant=minbase" \
   --apt-recommends false \
   --archive-areas "main contrib non-free" \
-  --bootappend-live "boot=live components noautologin timezone=America/New_York quiet splash hostname=ShaneSpaceOS" \
-  --bootappend-install "theme=dark" \
+  --bootappend-live "boot=live components noautologin timezone=America/New_York quiet splash hostname=$HOSTNAME" \
+  --bootappend-install "theme=Windows-10-Dark" \
   --debian-installer live \
   --debian-installer-gui true \
   --iso-application ShaneSpaceOS \
@@ -39,4 +32,13 @@ rm ./config/includes.chroot/usr/share/icons/Windows-10.tar.gz
 
 # add symbolic links
 ln -sf ./config/includes.installer/usr/share/graphics/logo_shanespaceos.png ./config/includes.installer/usr/share/graphics/logo_installer.png
-ln -sf ./config/includes.installer/usr/share/graphics/logo_shanespaceos_dark.png ./config/includes.installer/usr/share/graphics/logo_installer.png
+ln -sf ./config/includes.installer/usr/share/graphics/logo_shanespaceos_dark.png ./config/includes.installer/usr/share/graphics/logo_installer_dark.png
+ln -sf ./config/includes.chroot/etc/skel/.conkyrc ./config/includes.chroot/lib/conky/themes/fancy.conf
+
+# copy skel to root
+cp -r ./config/includes.chroot/etc/skel/* ./root/
+
+# copy theme to installer
+mkdir -p ./config/includes.installer/usr/share/themes/Windows-10-Dark
+cp -r ./config/includes.chroot/usr/share/themes/Windows-10-Dark/gtk-2.0 ./config/includes.installer/usr/share/themes/Windows-10-Dark/gtk-2.0
+

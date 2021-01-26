@@ -8,5 +8,5 @@ Icon=gtk-dialog-authentication
 
 [X-Action-Profile on_file]
 MimeTypes=all/allfiles;!inode/directory;
-Exec=runas %f
+Exec=runas editor %F
 Name=Edit File As Root

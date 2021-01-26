@@ -7,6 +7,6 @@ ToolbarLabel=Open Folder As Root
 Icon=gtk-dialog-authentication
 
 [X-Action-Profile on_folder]
-MimeTypes=inode/directory;
-Exec=runas /usr/bin/pcmanfm %u
+MimeTypes=inode/directory
+Exec=runas pcmanfm %d
 Name=Open Folder As Root
