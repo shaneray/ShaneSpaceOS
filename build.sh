@@ -75,7 +75,7 @@ build_debian()
 build_raspbian()
 {
 	# get dependencies
-	esudo apt install -y coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools bsdtar libcap2-bin grep xz-utils file curl bc
+	esudo apt install -y coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools bsdtar libcap2-bin grep xz-utils file curl bc xxd qemu-utils kpartx
 	
 	git clone https://github.com/RPi-Distro/pi-gen.git "${WORK_DIR}"
 	cd "${WORK_DIR}"
