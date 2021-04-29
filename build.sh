@@ -78,10 +78,12 @@ build_raspbian()
 	esudo apt install -y coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools bsdtar libcap2-bin grep xz-utils file curl bc xxd qemu-utils kpartx
 	
 	git clone https://github.com/RPi-Distro/pi-gen.git "${WORK_DIR}"
+	cp -r "./TODO/stage6" "${WORK_DIR}"
 	cd "${WORK_DIR}"
 	chmod +x "./build.sh"
 	touch "./stage3/SKIP" "./stage4/SKIP" "./stage5/SKIP"
 	touch "./stage4/SKIP_IMAGES" "./stage5/SKIP_IMAGES"
+	
 	
 	# config
 	local respbian_config="IMG_NAME=\"${IMG_NAME}\"${LF}DEPLOY_ZIP=0${LF}ENABLE_SSH=1"

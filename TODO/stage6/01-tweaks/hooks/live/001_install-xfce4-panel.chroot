@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+source "/lib/live-build/hook-functions"
+
+# Install xfce4-panel 4.14
+apt_install_http "http://mxrepo.com/mx/repo/pool/main/m/mx19-archive-keyring/mx19-archive-keyring_2019.5.31_all.deb"
+
+echo "deb http://mxrepo.com/mx/repo/ buster main non-free" > /etc/apt/sources.list.d/mxrepo.list
+sudo apt update
+sudo apt install xfce4-panel -y
+rm /etc/apt/sources.list.d/mxrepo.list
+sudo apt remove lxpanel -y

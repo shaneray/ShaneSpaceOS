@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Action
+Profiles=on_folder;
+Name=Open Folder As Root
+Tooltip=Open Folder As Root
+ToolbarLabel=Open Folder As Root
+Icon=gtk-dialog-authentication
+
+[X-Action-Profile on_folder]
+MimeTypes=inode/directory
+Exec=runas pcmanfm %d
+Name=Open Folder As Root

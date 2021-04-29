@@ -1,0 +1,14 @@
+#!/bin/bash
+
+[[ $1 == "list" ]] &&
+{
+	loginctl
+	exit 0
+}
+
+SESSION_DETAILS="$(loginctl --no-pager session-status $1)"
+SESSION_PROCESSES="$(loginctl --no-pager session-status $1 | grep ├─C)"
+SESSION_PROCESSES_ARR=( "$(echo "${SESSION_DETAILS#*├─}" | sed -e 's/^[ \t├─└─]*/'/ | cut -d ' ' -f 1))" )
+SESSION_PROCESSES_ARR=$(echo ${SESSION_PROCESSES_ARR%%)})
+echo "${SESSION_DETAILS%%├─*}"
+ps --forest -o pid,uid,user,tty,stat,sess,args -p ${SESSION_PROCESSES_ARR// /,}

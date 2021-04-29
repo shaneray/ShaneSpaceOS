@@ -1,0 +1,115 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+write()
+{
+	printf '%b\n' "$*"
+}
+
+writec()
+{
+	DEBUG_NO_TRAP=1
+	local input_text="$1"
+	local color="${2:-"${COLOR_DEFAULT}"}"
+	
+	if ! [[ $color =~ ^[0-9]$ ]]
+	then
+		case "$(echo "$color" | tr '[:upper:]' '[:lower:]')" in
+			black) color=0 ;;
+			red) color=1 ;;
+			green) color=2 ;;
+			orange$) color=3 ;;
+			blue) color=4 ;;
+			magenta) color=5 ;;
+			cyan) color=6 ;;
+			lightgray) color=7 ;;
+			darkgray) color=8 ;;
+			tomato) color=9 ;;
+			lime) color=10 ;;
+			yellow) color=11 ;;
+			purple) color=12 ;;
+			lightmagenta) color=13 ;;
+			lightcyan) color=14 ;;
+			white) color=15 ;;
+	*) color=$COLOR_DEFAULT ;;
+		esac
+	fi
+	
+	color="\e[38;5;${color}m"
+	input_text="${input_text// [/ [$COLOR_RESET}"
+	input_text="${input_text//]/${color}]}"
+	
+	printf '%b\n' "${color}${input_text}${COLOR_RESET}"
+	DEBUG_NO_TRAP=0
+}
+
+write_info()
+{
+	[ "$DEBUG" -eq 0 ] && return
+	writec "$(get_time) [INFO]: $*" $COLOR_DEBUG
+}
+
+write_info_detail()
+{
+	write_info "$(string_indent 1 "${*}")"
+}
+
+write_debug()
+{
+	[ "$DEBUG" -eq 0 ] && return
+	local message="$(get_time) [${EMOJI_STETHOSCOPE} DEBUG]: $*"
+	local color="$COLOR_DEBUG"
+	
+	writec "$message" "$color"
+	debug_log "$message" "$color"
+}
+
+write_debug_detail()
+{
+	write_debug "$(string_indent 1 "${*}")"
+}
+
+debug_log()
+{
+	local message="$1"
+	local color="$2"
+	
+	if [ "$LOG_IN_COLOR" == "1" ]
+	then
+		writec "$message" >> "${SS_LOG_DIRECTORY}/shanespace.debug.log"
+	else
+		write "$message" >> "${SS_LOG_DIRECTORY}/shanespace.debug.log"
+	fi
+}
+
+write_trace()
+{
+	[ "$TRACE" -eq 0 ] && return
+	[ "$DEBUG" -eq 0 ] && return
+	local message="$(get_time) [${EMOJI_EYES} TRACE]: $*"
+	local color="$COLOR_DEBUG"
+	
+	writec "$message" "$color"
+	debug_log "$message" "$color"
+}
+
+write_trace_detail()
+{
+	write_trace "$(string_indent 1 "${*}")"
+}
+
+write_error()
+{
+	local message="$(get_time) [${EMOJI_CURSE} Error]: $*"
+	local color="red"
+	
+	writec "$message" "$color" >&2
+	debug_log "$message" "$color"
+}
+
+write_error_detail()
+{
+	write_error "$(string_indent 1 "${*}")"
+}

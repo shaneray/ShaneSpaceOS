@@ -1,0 +1,49 @@
+steal this stuff :)
+https://github.com/nu-art/dev-tools/tree/master/scripts/_core-tools
+https://github.com/mnorin/bash-scripts
+
+create new bash/cecript/etc menus
+fix icons
+
+
+dotnet: https://dot.net/v1/dotnet-install.sh
+
+
+# cscript: https://github.com/filipw/dotnet-script
+dotnet tool install -g dotnet-script
+curl -s https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.sh | bash
+
+# plymouth
+https://askubuntu.com/questions/50757/how-to-get-plymouth-to-display-boot-messages-when-booting
+
+json config
+
+xorg login screen customization
+
+https://ss64.com/bash/notify-send.html
+
+https://github.com/stefonarch/custom-actions/blob/master/actions/rootedit.desktop
+
+zenity
+
+sudo apt-get install d-feet
+
+https://github.com/jdcapa/bashrc.d
+
+dir=~; ls -A1 "$dir";dir "$dir" | column -ts "|"
+
+
+# Some more alias to avoid making mistakes:
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+
+
+pamd updates for xrdp and root to enable /etc/environment
+
+https://github.com/gdbtek/linux-cookbooks/blob/master/libraries/util.bash
+https://gitlab.com/kyb/autorsync/-/blob/master/utils.bash#L84
+https://stedolan.github.io/jq
+
+https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb
+sudo apt install ./teamviewer-host_amd64.deb

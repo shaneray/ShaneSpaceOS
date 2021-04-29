@@ -1,0 +1,12 @@
+[Added Associations]
+text/plain=mousepad.desktop;
+application/x-sharedlib=mousepad.desktop;
+
+[Default Applications]
+text/plain=mousepad.desktop
+application/octet-stream=mousepad.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop

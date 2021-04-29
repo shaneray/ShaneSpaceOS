@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Action
+Profiles=on_file;
+Name=Open As Root
+Tooltip=Open As Root
+ToolbarLabel=Open As Root
+Icon=gtk-dialog-authentication
+
+[X-Action-Profile on_file]
+MimeTypes=all/allfiles;!inode/directory;
+Exec=runas %F
+Name=Open File As Root

@@ -1,0 +1,166 @@
+################################
+# Audio
+################################
+# BlueZ is the official Linux Bluetooth protocol stack.
+bluez
+# network-capable sound server program
+pulseaudio
+# enables PulseAudio to work with bluetooth devices, like headset or audio gateway
+pulseaudio-module-bluetooth
+# the Advanced Linux Sound Architecture.
+alsa-utils
+
+################################
+# Boot Animation
+################################
+plymouth
+plymouth-themes
+
+################################
+# Utilities
+################################
+sudo
+openssh-server
+localepurge
+dosfstools
+software-properties-common
+wget
+curl
+gnupg2
+grub-common
+pciutils
+debconf-utils
+ntfs-3g
+zip
+unzip
+bc
+dos2unix
+rsync
+locate
+jq
+git
+ca-certificates
+apt-transport-https
+dconf-gsettings-backend
+
+###############################
+# Other
+###############################
+# colored emoji
+fonts-noto-color-emoji
+cups
+system-config-printer
+
+################################
+# network
+################################
+ifupdown
+iproute2
+isc-dhcp-client
+netbase
+wireless-tools
+gvfs
+gvfs-backends
+rfkill
+
+###########################
+# X11 Desktop Environment
+###########################
+# Lightweight X11 Desktop Environment
+task-lxde-desktop
+# This composition manager implements shadows, fading, proper translucency, and more.
+xcompmgr
+# Taskbar (panel)
+xfce4-panel
+# "Start Menu"
+xfce4-whiskermenu-plugin
+# Generic Monitor for the Xfce4 panel
+xfce4-genmon-plugin
+# plugin icon to control Pulseaudio
+xfce4-pulseaudio-plugin
+# enables laptop users to set up a power profile for two different modes "on battery power" and "on ac power"
+xfce4-power-manager
+# notification daemon for Xfce that implements the Freedesktop.org Desktop Notifications Specification
+xfce4-notifyd
+# clipboard manager
+xfce4-clipman-plugin
+# cairo-based gtk+-2.0 theme engine
+gtk2-engines-murrine
+
+##########
+# Tools
+##########
+gnome-keyring
+alacarte
+dbus-x11
+apt-utils
+xwrited
+gmrun
+accountsservice
+d-feet
+gnome-system-monitor
+xscreensaver
+qt5ct
+# GTK+ bluetooth management utility
+blueman
+# simple GTK+ based volume control tool
+pavucontrol
+# Synaptics Touchpad
+xserver-xorg-input-synaptics
+# Uses the Remote Desktop Protocol to present a graphical login to a remote client
+xrdp
+# Set of drivers (screen device, keyboard, and mouse) for X.org enabling use through an RDP session with xrdp
+xorgxrdp
+# file searching tool for Linux and UNIX
+catfish
+# displays information about your hardware and operating system.
+hardinfo
+# GTK+ client, tray icon showing network activity and signal strength.
+wicd-gtk
+# Synaptic enables you to install, upgrade and remove software packages in a user friendly way.
+synaptic
+# Graphical QT frontend for plain sudo(8) (for requesting optional password in GUI fashion)
+lxqt-sudo
+# lightweight and desktop-independent task manager
+lxtask
+# allows you to use a modifier key as another key when pressed and released on its own
+xcape
+# sends desktop notifications to a notification daemon, as defined in the Desktop Notifications spec
+libnotify-bin
+# graphical interface to configure the printing system
+system-config-printer
+# manage and configure disk drives and media
+gnome-disk-utility
+# Cross-platform configuration utilities for GNOME
+gnome-system-tools
+# Graphical tools for user account management tasks
+usermode
+
+lua-lpeg
+fonts-font-awesome
+conky-all
+
+
+################
+# Applications
+################
+# Media player
+vlc
+# Text editor
+geany
+
+################
+# Maybe later
+################
+# alsamixergui                  # graphical soundcard mixer.  It supports multiple soundcards with multiple devices.
+
+################################
+# Graveyard
+# May move to development list...
+################################
+# gtk-3-examples              # contains the example files and a demonstration program for GTK+3.
+# libgtk-3-dev                # contains the header and development files which are needed for building GTK applications
+# plymouth-x11                # contains the log viewer and the X11 renderer for a graphical boot splash.
+# dconf-editor                # Graphical editor for DConf
+# qt5ct                       # GUI to configure Qt5 settings (theme, font, icons, etc.)
+# xdotool                     # lets you programatically (or manually) simulate keyboard input and mouse activity, move and resize windows, etc.

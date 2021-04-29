@@ -1,0 +1,26 @@
+# /lib/lsb/init-functions.d/99-plymouth
+
+# Abort sourcing of this file if plymouth isn't active
+if ! plymouth --ping > /dev/null 2>&1
+then
+	return
+fi
+
+log_daemon_msg_pre () { plymouth_log_msg "${@}"; }
+log_daemon_msg_post () { plymouth_log_msg "${@}"; }
+log_begin_msg_pre () { plymouth_log_msg "${@}"; }
+log_begin_msg_post () { plymouth_log_msg "${@}"; }
+log_end_msg_pre () { plymouth_log_msg "${@}"; }
+log_end_msg_post () { plymouth_log_msg "${@}"; }
+log_action_msg_pre () { plymouth_log_msg "${@}"; }
+log_action_msg_post () { plymouth_log_msg "${@}"; }
+log_action_begin_msg_pre () { plymouth_log_msg "${@}"; }
+log_action_begin_msg_post () { plymouth_log_msg "${@}"; }
+log_action_end_msg_pre () { plymouth_log_msg "${@}"; }
+log_action_end_msg_post () { plymouth_log_msg "${@}"; }
+log_progress_msg () { plymouth_log_msg "${@}"; }
+
+plymouth_log_msg ()
+{
+	/bin/plymouth update --status="${@}" || true
+}

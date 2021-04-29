@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Menu
+Name=Admin Actions Menu
+GenericName=Admin Actions
+Comment=Actions for administrators
+ToolbarLabel=Admin Actions
+Tooltip=Admin Actions
+Icon=gtk-dialog-authentication
+ItemsList=open-folder-as-root;open-file-as-root;edit-file-as-root;make-file-executable;show-parameters;
+Profiles=on_folder;
+
+[X-Action-Profile on_folder]
+MimeTypes=inode/directory;

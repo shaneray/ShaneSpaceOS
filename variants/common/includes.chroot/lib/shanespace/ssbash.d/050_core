@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#################################
+# Functions
+#################################
+reinstall()
+{
+	local install_files_path="/home/user/Desktop/shanespace"
+	bash "${install_files_path}/install" ${*}
+}
+
+ss_functions()
+{
+	typeset -F | cut  -f 3 -d ' '
+}
+
+
+script_exit()
+{
+    # override this
+    return 0
+}
+
+####################################
+# Init
+####################################
+SHELL_TYPE=$(get_shell_type)
+
+# only do this for non-interactive sessions
+#set_options
+
+trap 'trap_error $? $LINENO "$BASH_COMMAND" "${BASH_SOURCE}"' ERR
+set_ps1
+
+write_info "$(shell_info)"

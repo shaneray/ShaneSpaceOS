@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=KeyMap
+Exec=/bin/keymap
+Terminal=false
+Type=Application
+StartupNotify=false

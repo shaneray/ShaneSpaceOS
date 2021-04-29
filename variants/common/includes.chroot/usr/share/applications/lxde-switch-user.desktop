@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Switch Users
+Comment=Switch Users
+GenericName=Switch Users
+Icon=terminal
+Exec=lxdm-switch-user
+TryExec=lxdm-switch-user
+NoDisplay=true
+Terminal=false

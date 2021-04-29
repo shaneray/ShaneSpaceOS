@@ -1,0 +1,46 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+
+skip()
+{
+	local array=( "${@:2}" )
+	
+	write "${array[@]:$1}"
+}
+
+take()
+{
+	local array=( "${@:2}" )
+	write "${array[@]:0:$1}"
+}
+
+array_contains()
+{
+	local array=( "${@:2}" )
+	for e in "${array[@]}"
+	do
+		[[ "$e" = "$1" ]] && return 0;
+	done;
+	return 1;
+}
+
+array_reverse()
+{
+	write $(array_expand ${@} | tac)
+}
+
+array_expand()
+{
+    printf '%s\n' "${@}"
+}
+
+array_join()
+{
+	local delimeter="$1"
+	local array=( "${@:2}" )
+	local sliced=( "${array[@]:1}" )
+	printf '%b' "${array}" "${sliced[@]/#/$delimeter}\n"
+}

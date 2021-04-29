@@ -1,0 +1,78 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+ss_cd()
+{
+	destination="${*}"
+	[ -z "$destination" ] && destination="$HOME"
+	real_destination=$(realpath "$destination")
+	write_debug "Changing directories from [$PWD] to [${real_destination}]"
+	builtin cd "$destination" && ss_dir "${real_destination}"
+}
+
+copy()
+{
+	local src=$1
+	local destination=$2
+	
+	mkdir -p "$(dirname "$destination")"
+	write "Copying file(s) from [$src] to [$destination]"
+	rsync -rah --info=progress2 "$src" "$destination"
+}
+
+sslink()
+{
+	local src
+	src="$(realpath -s "$1")"
+	local destination="$2"
+	local output=""
+	
+	mkdir -p "$(dirname "$destination")"
+	write "Creating symlink from [$src] to [$destination]"
+	ln -sfT "$src" "$destination"
+}
+
+file_info(){
+	if [ -z "${1}" ]
+	then
+		write "Missing required parameter.  Please provide a file or directory path to check."
+		return 1;
+	fi
+	
+	local result
+	result="$(file --brief "${1}")"
+	if [[ $result == *"cannot open"* ]]
+	then
+		write_error "$result";
+	elif [[ $result == *"directory"* ]]
+	then
+		write "$result";
+	else
+		write "$result";
+	fi
+}
+
+ss_dir() {
+	local file_list
+	file_list=( "$(
+	shopt -s dotglob nullglob
+	local file_list=("${1:-$PWD}/"*)
+	shopt -u dotglob nullglob
+	echo "${file_list[@]}"
+	)" )
+	
+	local output
+	for file in ${file_list[@]}
+	do
+		output+="$(ls_color "$file")|$(du -sbh $file | cut -f1)\n"
+	done
+		
+	write "$output" | sort | cut -d '|' -f 2- | column -ts "|"
+}
+
+get_type()
+{
+	echo "$(type -f "$1")"
+}

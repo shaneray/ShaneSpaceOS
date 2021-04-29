@@ -1,0 +1,63 @@
+#!/bin/bash
+
+########################################
+# Init
+########################################
+
+# inclusion guard
+#=======================================
+#[ -n "$_SS_BASHEXT" ] && return;
+[ ! -n "$_SS_BASHEXT" ] && readonly _SS_BASHEXT=1
+export _SS_BASHEXT
+
+# Bash shell options
+#=======================================
+shopt -s extdebug
+
+# Variables
+#=======================================
+DEBUG=0
+TRACE=0
+DEBUG_NO_TRAP=0
+LOG_IN_COLOR=1
+
+COLOR_PRIMARY="33"
+COLOR_DEFAULT="$COLOR_PRIMARY"
+COLOR_DEBUG="cyan"
+COLOR_RESET="$(tput sgr0)"
+
+SHELL_TYPE="Unknown"
+SROOT="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+SSBASH_MODULE_DIRECTORY="${SROOT}/ssbash.d"
+SS_LOG_DIRECTORY="${HOME}/log"
+
+# Functions
+#=======================================
+load_modules()
+{
+	if [ -d "${SSBASH_MODULE_DIRECTORY}" ]; then
+		# load modules
+		# write_debug "Loading modules from [${SSBASH_MODULE_DIRECTORY}"]
+		for i in ${SSBASH_MODULE_DIRECTORY}/*
+		do
+			basename="$(basename $i)"
+			if [[ "$basename" != "000_core" && -r $i ]]
+			then
+				# write_debug "Loading module: $basename"
+				. $i
+			fi
+		done
+		unset i
+	else
+		echo "Module directory not found: $SSBASH_MODULE_DIRECTORY" >&2
+		exit 1
+	fi
+}
+
+#################################
+# Do Work
+#################################
+# create log directory if not exists
+[[ -d "${SS_LOG_DIRECTORY}" ]] || mkdir -p "${SS_LOG_DIRECTORY}"
+
+load_modules

@@ -1,0 +1,77 @@
+#!/bin/bash
+
+set -e
+
+source "/lib/live-build/hook-functions"
+
+interactive_shell_integration()
+{
+	# System-wide bash.bashrc file for interactive bash(1) shells.
+	local bashrc_file="/etc/bash.bashrc"
+	echo "Updating System-wide ${bashrc_file} file for interactive bash(1) shells."
+	# Create symlink
+	sslink "${SS_LIB}/ssbash" "/etc/bash.bashrc.d/ssbash.sh"
+	
+	if grep -q "/etc/bash.bashrc.d" "${bashrc_file}"
+	then
+		echo "System-wide bashrc file [${bashrc_file}] for interactive bash(1) shells already updated!"
+	else
+		local bashrc_file_bak="${bashrc_file}.bak"
+		[ -f "${bashrc_file_bak}" ] &&
+		{
+			echo "Bashrc backup file [${bashrc_file_bak}] found, restoring to original state."
+			mv "${bashrc_file_bak}" "${bashrc_file}"
+		}
+	
+		# create backup of current bashrc file
+		echo "Creating backup of [${bashrc_file}] to [${bashrc_file_bak}]"
+		cp "${bashrc_file}" "${bashrc_file_bak}"
+		
+		# add logic to load files from bashrdc.d
+		cat >> "${bashrc_file}" <<- "EOF"
+		
+		# load extra files from bash.bashrc.d
+		if [ -d /etc/bash.bashrc.d ]; then
+			for i in /etc/bash.bashrc.d/*.sh; do
+				if [ -r $i ]; then
+					. $i
+				fi
+			done
+			unset i
+		fi
+		EOF
+	fi
+}
+
+noninteractive_shell_integration()
+{
+	# System-wide bash.bashrc file for interactive bash(1) shells.
+	local environment_file="/etc/environment"
+	echo "Updating System-wide ${environment_file} file and adding \$BASH_ENV variable for non-interactive bash(1) shells..."
+	if grep -q "${SS_LIB}/ssbash" "$environment_file"
+	then
+		echo "System-wide [${environment_file}] file already contains appropriate [\$BASH_ENV] variable for non-interactive bash(1) shells!"
+	else
+		# check for backup file and restore if it exists.
+		local environment_file_bak="${environment_file}.bak"
+		[ -f "${environment_file_bak}" ] &&
+		{
+			echo "Environment backup file [${environment_file_bak}] found, restoring to original state."
+			mv "${environment_file_bak}" "${environment_file}"
+		}
+		
+		# create backup of current environment file
+		echo "Creating backup of [${environment_file}] to [${environment_file_bak}]"
+		cp "${environment_file}" "${environment_file_bak}"
+		
+		# add ssbash to environment file
+		cat >> "${environment_file}" <<- EOF
+			export BASH_ENV="${SS_LIB}/ss-bash"
+		EOF
+	fi
+}
+
+# install ssbash
+SS_LIB="/lib/shanespace"
+interactive_shell_integration
+noninteractive_shell_integration

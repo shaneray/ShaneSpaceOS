@@ -1,0 +1,35 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+prompt_boolean()
+{
+	local message="$1"
+	local prompt_response
+	
+	# get input from user
+	read -p "$message [t/true/y/yes]:" prompt_response
+	
+	# apply default if user pressed enter without supplying a value
+	if string_is_empty "${prompt_response}"
+	then
+		prompt_response="yes"
+	fi
+	
+	# process response
+	local prompt_response_parsed
+	prompt_response_parsed="$(string_to_boolean $prompt_response)"
+	if [[ "$prompt_response_parsed" != "true" ]]
+	then
+		write_debug "User declined with response of [${prompt_response} (${prompt_response_parsed})]."
+		write_error "Request declined due to response of [${prompt_response} (${prompt_response_parsed})]. Operation aborted."
+		return 1
+	fi
+}
+
+pipe_capture()
+{
+	stdin_value=$( read -et 1 stdin; echo $stdin) || true
+	write "${stdin_value[@]}"
+}

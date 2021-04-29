@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+source "/lib/live-build/hook-functions"
+
+include="@include common-env"
+echo "$include" >> "/etc/pam.d/sudo"
+echo "$include" >> "/etc/pam.d/xrdp-sesman"

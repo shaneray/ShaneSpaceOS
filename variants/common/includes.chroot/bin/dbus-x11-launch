@@ -1,0 +1,14 @@
+#!/bin/bash
+log_msg()
+{
+	#echo "$@" >> ~/Desktop/log.txt
+} 
+
+local path="$HOME/.dbus/session-bus/$(cat /var/lib/dbus/machine-id)-${DISPLAY##:}"
+local dbus_variables="$(cat "${path%.*}")"
+log_msg "setting dbus variables"
+log_msg "$dbus_variables"
+eval "$dbus_variables"
+log_msg "dbus-launch --exit-with-x11 $@"
+dbus-launch --exit-with-x11 $@
+log_msg "----------------"

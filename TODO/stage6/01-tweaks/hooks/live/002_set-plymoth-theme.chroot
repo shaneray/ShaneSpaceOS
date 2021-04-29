@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+plymouth-set-default-theme Earth-sunrise

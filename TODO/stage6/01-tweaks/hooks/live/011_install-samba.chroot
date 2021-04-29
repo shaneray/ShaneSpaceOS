@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+echo "samba-common samba-common/dhcp boolean true" | debconf-set-selections
+apt install smbclient -y

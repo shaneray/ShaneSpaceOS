@@ -1,0 +1,18 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+error_test1()
+{
+	write "[error_test1] was called with the following parameters: [${*}]"
+	write "[error_test1] method is about to call [error_test2()] and then exit with code [4]"
+	error_test2 "${@}"
+}
+
+error_test2()
+{
+	write "[error_test2] was called with the following parameters: [${*}]"
+	write "[error_test2] method is about to exit with code [7]"
+	return 7
+}

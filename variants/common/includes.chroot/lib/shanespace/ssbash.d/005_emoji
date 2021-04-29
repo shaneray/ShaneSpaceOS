@@ -1,0 +1,39 @@
+#!/bin/bash
+
+[ ! -n "$_SS_BASHEXT" ] && {
+	echo "[ERROR]: $0 requires SSBASHEXT to be loaded."
+}
+
+# https://unicode.org/emoji/charts/full-emoji-list.html
+declare -gAx EMOJI
+export EMOJI_ALIEN=$'\U1F47D'
+export EMOJI_FOLDER=$'\U1F4C1'
+export EMOJI_FILE=$'\U1F4C4'
+export EMOJI_LINK=$'\U1F517'
+export EMOJI_CURSE=$'\U1F92C'
+export EMOJI_GHOST=$'\U1F47B'
+export EMOJI_BLANK=$'\U3000'
+export EMOJI_WARNING=$'\U26A0 '
+export EMOJI_STETHOSCOPE=$'\U1F3E5'
+export EMOJI_EYES=$'\U1F440'
+export EMOJI_SKULL_AND_BONES=$'\U2620 '
+
+EMOJI[ALIEN]="${EMOJI_ALIEN}"
+EMOJI[FOLDER]="${EMOJI_FOLDER}"
+EMOJI[FILE]="${EMOJI_FILE}"
+EMOJI[LINK]="${EMOJI_LINK}"
+EMOJI[CURSE]="${EMOJI_CURSE}"
+EMOJI[GHOST]="${EMOJI_GHOST}"
+EMOJI[BLANK]="${EMOJI_BLANK}"
+EMOJI[WARNING]="${EMOJI_WARNING}"
+EMOJI[STETHOSCOPE]="${EMOJI_STETHOSCOPE}"
+EMOJI[EYES]="${EMOJI_EYES}"
+EMOJI[SKULL_AND_BONES]="${EMOJI_SKULL_AND_BONES}"
+
+emoji_test()
+{
+	for i in "${!EMOJI[@]}";
+	do
+		echo "${EMOJI[$i]}: $i";
+	done
+}

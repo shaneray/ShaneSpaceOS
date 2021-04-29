@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+source "/lib/live-build/hook-functions"
+
+# perform any clean up here
+rm "/lib/live-build/hook-functions"
+rm -rf "$LIVE_BUILD_TMP"
+
+sudo apt update

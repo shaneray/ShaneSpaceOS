@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Action
+Name=Make File Executable
+GenericName=Make File Executable
+Comment=Make File Executable
+Icon=media-playback-start
+Profiles=on_file;
+
+[X-Action-Profile on_file]
+MimeTypes=all/allfiles
+Exec=runas chmod +x %f
+Name=Make File Executable

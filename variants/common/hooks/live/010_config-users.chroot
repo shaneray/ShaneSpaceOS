@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+source "/lib/live-build/hook-functions"
+
+set_password "root"
+add_user "live" "Live User"
+add_sudo_user "admin" "Administrator"

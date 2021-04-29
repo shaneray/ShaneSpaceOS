@@ -1,0 +1,49 @@
+#!/bin/bash
+
+########################################
+# functions
+########################################
+string_to_boolean()
+{
+	local input="$1"
+	local output="false"
+	if [[ "$input" =~ ^1|t|true|y|yes$ ]]
+	then
+		output="true"
+	fi
+	echo "$output"
+}
+
+string_indent()
+{
+	local count="${1:-1}"
+	echo $2 | sed -e "s/^/$(string_repeat '\t' $count)/"
+}
+
+string_split()
+{
+	local delimeter="$1"
+	echo "${@//$delimeter/ }"
+}
+
+string_length ()
+{
+	expr length "${*}"
+}
+
+string_is_empty()
+{
+	[[ -z "$*" ]]
+}
+
+string_is_notempty()
+{
+	[[ -n "$*" ]]
+}
+
+string_repeat()
+{
+	input="$1"
+	template="$(printf "%${2}s")"
+	echo "${template//?/$input}"
+}

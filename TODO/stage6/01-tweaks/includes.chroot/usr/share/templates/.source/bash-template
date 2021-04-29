@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# get current script directory
+script_directory="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+printf '%b\n' "Press any key to exit"
+read

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -ex
+
+# enable gtk debugging
+[[ $(gsettings list-schemas) == *"org.gtk.Settings.Debug"* ]] && 
+{
+	gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
+}
+
+[ "$GSETTINGS_UPDATED" == 1 ] && echo "GTK gsettings updated." || echo "GTK gsettings not updated."

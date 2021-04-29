@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+source "/lib/live-build/hook-functions"
+
+# create octoprint user
+add_user "octoprint" "OctoPrint User"
+set_password "octoprint" "ender3"
+
+sudo usermod -a -G tty octoprint
+
+# create octoPrint software directory
+OCTOPRINT_DIR="/home/user/OctoPrint"
+
+# install octoPrint software
+sudo mkdir -p "$OCTOPRINT_DIR"
+cd "$OCTOPRINT_DIR"
+sudo python3 -m venv venv
+. venv/bin/activate
+pip install pip --upgrade
+pip install --no-cache-dir octoprint
+deactivate
+
+# create octoPrint service
+SYSTEMD_SERVICE_FILE="/etc/systemd/system/octoprint.service"
+
+[ -f "$SYSTEMD_SERVICE_FILE" ] ||
+{
+cat > "$SYSTEMD_SERVICE_FILE" << EOF
+[Unit]
+Description=The snappy web interface for your 3D printer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment="LC_ALL=C.UTF-8"
+Environment="LANG=C.UTF-8"
+Type=simple
+User=octoprint
+ExecStart=$OCTOPRINT_DIR/venv/bin/octoprint
+
+[Install]
+WantedBy=multi-user.target"
+EOF
+}
+
+systemctl enable octoprint.service

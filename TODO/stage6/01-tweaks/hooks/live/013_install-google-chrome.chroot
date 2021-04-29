@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+
+source "/lib/live-build/hook-functions"
+
+if [ -f "/etc/apt/trusted.gpg.d/google-chrome.gpg" ]
+then
+{
+	echo "Using cached google chrome gpg key"
+}
+else
+{
+	get_http_file "https://dl.google.com/linux/linux_signing_key.pub"
+	
+	echo "converting google chrome apt key"
+	gpg --no-default-keyring --keyring "$LIVE_BUILD_TMP/google-chrome.tmp" --import "$LIVE_BUILD_TMP/linux_signing_key.pub"
+	gpg --no-default-keyring --keyring "$LIVE_BUILD_TMP/google-chrome.tmp" --export > "$LIVE_BUILD_TMP/google-chrome.gpg"
+	sudo mv "$LIVE_BUILD_TMP/google-chrome.gpg" "/etc/apt/trusted.gpg.d/google-chrome.gpg"
+}
+fi
+
+apt_install_http "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"

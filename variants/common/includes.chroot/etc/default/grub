@@ -1,0 +1,30 @@
+set default=0
+
+loadfont /etc/alternatives/desktop-theme/grub/dejavu-bold-16.pf2
+loadfont /etc/alternatives/desktop-theme/grub/dejavu-bold-14.pf2
+loadfont /etc/alternatives/desktop-theme/grub/unicode.pf2
+set gfxmode=1024x768
+set gfxpayload=keep
+set timeout=5
+insmod all_video
+insmod gfxterm
+insmod png
+
+set color_normal=light-gray/black
+set color_highlight=white/black
+
+set theme=/etc/alternatives/desktop-theme/grub/live-theme/theme.txt
+
+terminal_output gfxterm
+
+insmod play
+play 960 440 1 0 4 440 1
+
+# ShaneSpace OS boot
+# menuentry "ShaneSpace OS" {
+# echo "Loading Kernel..."
+# linux KERNEL_LIVE APPEND_LIVE persistent
+# echo "Loading Initial RAM disk..."
+# initrd INITRD_LIVE
+# }
+

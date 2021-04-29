@@ -1,0 +1,26 @@
+#!/bin/sh
+
+PREREQ="plymouth"
+
+prereqs()
+{
+	echo "${PREREQ}"
+}
+
+case ${1} in
+	prereqs)
+		prereqs
+		exit 0
+		;;
+esac
+
+# Abort sourcing of this file if plymouth isn't active
+if ! plymouth --ping > /dev/null 2>&1
+then
+	return
+fi
+
+_log_msg()
+{
+	/bin/plymouth update --status="${@}" || true
+}
